@@ -41,6 +41,35 @@
     </div>
   </div>
 
+  <!-- HOW IT WORKS banner -->
+  <div class="sim-how-wrap container">
+    <div class="sim-how-header">
+      <span class="sim-how-icon">🧭</span>
+      <span>How the Simulations Work</span>
+    </div>
+    <div class="sim-how-steps">
+      <div class="sim-step">
+        <div class="sim-step-num">1</div>
+        <div class="sim-step-text"><strong>Pick a simulation</strong> from the cards below</div>
+      </div>
+      <div class="sim-step-arrow">→</div>
+      <div class="sim-step">
+        <div class="sim-step-num">2</div>
+        <div class="sim-step-text"><strong>Load a dataset sample</strong> or enter your own input</div>
+      </div>
+      <div class="sim-step-arrow">→</div>
+      <div class="sim-step">
+        <div class="sim-step-num">3</div>
+        <div class="sim-step-text"><strong>Run the AI model</strong> and see live predictions</div>
+      </div>
+      <div class="sim-step-arrow">→</div>
+      <div class="sim-step">
+        <div class="sim-step-num">4</div>
+        <div class="sim-step-text"><strong>Read the explanation</strong> to understand why</div>
+      </div>
+    </div>
+  </div>
+
   <div class="sim-container container">
     <!-- Simulation Cards -->
     <div class="sim-grid" id="simGrid">
@@ -54,7 +83,27 @@
             <span class="tag tag-green">NLP · Naive Bayes</span>
           </div>
         </div>
-        <p>Type or paste an email text. The AI will classify it as spam or legitimate using Naive Bayes with keyword probabilities.</p>
+
+        <!-- How it works -->
+        <div class="sim-flow">
+          <div class="sf-step"><span class="sf-num">1</span>Type or paste email text below</div>
+          <div class="sf-step"><span class="sf-num">2</span>Model scores spam keywords</div>
+          <div class="sf-step"><span class="sf-num">3</span>Bayes theorem returns probability</div>
+        </div>
+
+        <p>Type or paste an email text. The AI classifies it as spam or legitimate using Naive Bayes with keyword probabilities.</p>
+
+        <!-- Dataset samples -->
+        <div class="sim-dataset-section">
+          <div class="sds-label">📂 Try a dataset sample:</div>
+          <div class="sds-btns">
+            <button class="sds-btn" onclick="loadSpamDataset(0)">🎉 Lottery Win</button>
+            <button class="sds-btn" onclick="loadSpamDataset(1)">💸 Money Offer</button>
+            <button class="sds-btn sds-btn-safe" onclick="loadSpamDataset(2)">📧 Legit Email</button>
+            <button class="sds-btn sds-btn-safe" onclick="loadSpamDataset(3)">🏢 Work Update</button>
+          </div>
+        </div>
+
         <div class="sim-body" id="spam-body">
           <textarea class="sim-input" id="spamInput" placeholder="Type email content here... e.g., 'Win a FREE iPhone! Click here now!'" rows="3"></textarea>
           <div class="sim-keywords">
@@ -63,7 +112,7 @@
             <span class="sk-word spam-kw">click</span><span class="sk-word spam-kw">money</span><span class="sk-word spam-kw">offer</span>
             <span class="sk-word spam-kw">lottery</span><span class="sk-word spam-kw">guaranteed</span>
           </div>
-          <button class="sim-btn" onclick="runSpamDetector()">🔍 Analyze Email</button>
+          <button class="sim-btn" id="btn-spam" onclick="runSpamDetector()">🔍 Analyze Email</button>
           <div class="sim-result" id="spamResult" style="display:none"></div>
         </div>
       </div>
@@ -77,15 +126,30 @@
             <span class="tag tag-purple">NLP · Lexicon-based</span>
           </div>
         </div>
-        <p>Enter any text and the AI will detect the sentiment (positive, negative, neutral) and emotional tone like a real product review analyzer.</p>
+
+        <!-- How it works -->
+        <div class="sim-flow">
+          <div class="sf-step"><span class="sf-num">1</span>Enter any text or review</div>
+          <div class="sf-step"><span class="sf-num">2</span>Model scores positive/negative words</div>
+          <div class="sf-step"><span class="sf-num">3</span>Returns sentiment + confidence bars</div>
+        </div>
+
+        <p>Enter any text and the AI detects sentiment (positive, negative, neutral) like a real product review analyzer.</p>
+
+        <!-- Dataset samples -->
+        <div class="sim-dataset-section">
+          <div class="sds-label">📂 Try a dataset sample:</div>
+          <div class="sds-btns">
+            <button class="sds-btn sds-btn-safe" onclick="loadSentimentDataset(0)">😍 Positive</button>
+            <button class="sds-btn" onclick="loadSentimentDataset(1)">😠 Negative</button>
+            <button class="sds-btn sds-btn-neutral" onclick="loadSentimentDataset(2)">😐 Neutral</button>
+            <button class="sds-btn sds-btn-safe" onclick="loadSentimentDataset(3)">🌟 Rave Review</button>
+          </div>
+        </div>
+
         <div class="sim-body" id="sentiment-body">
           <textarea class="sim-input" id="sentimentInput" placeholder="Enter a review, tweet, or comment..." rows="3"></textarea>
-          <div class="sim-example-btns">
-            <button class="seb" onclick="fillSentiment('This product is absolutely amazing! Best purchase ever 🎉')">Positive Example</button>
-            <button class="seb" onclick="fillSentiment('Terrible quality, broke after 2 days. Very disappointed.')">Negative Example</button>
-            <button class="seb" onclick="fillSentiment('The product arrived on time. It works as described.')">Neutral Example</button>
-          </div>
-          <button class="sim-btn" onclick="runSentiment()">😊 Analyze Sentiment</button>
+          <button class="sim-btn" id="btn-sentiment" onclick="runSentiment()">😊 Analyze Sentiment</button>
           <div class="sim-result" id="sentimentResult" style="display:none"></div>
         </div>
       </div>
@@ -99,7 +163,27 @@
             <span class="tag tag-green">Regression · Linear Model</span>
           </div>
         </div>
-        <p>Enter house features and the ML model predicts the price using a linear regression model trained on real estate data.</p>
+
+        <!-- How it works -->
+        <div class="sim-flow">
+          <div class="sf-step"><span class="sf-num">1</span>Set house features below</div>
+          <div class="sf-step"><span class="sf-num">2</span>Linear regression weights each feature</div>
+          <div class="sf-step"><span class="sf-num">3</span>Returns predicted price + feature impact</div>
+        </div>
+
+        <p>Enter house features and the ML model predicts the price using linear regression trained on real estate data.</p>
+
+        <!-- Dataset samples -->
+        <div class="sim-dataset-section">
+          <div class="sds-label">📂 Try a dataset sample:</div>
+          <div class="sds-btns">
+            <button class="sds-btn sds-btn-neutral" onclick="loadHouseDataset(0)">🏡 Starter Home</button>
+            <button class="sds-btn sds-btn-safe" onclick="loadHouseDataset(1)">🏠 Family House</button>
+            <button class="sds-btn sds-btn-safe" onclick="loadHouseDataset(2)">🏰 Luxury Villa</button>
+            <button class="sds-btn" onclick="loadHouseDataset(3)">🏗️ Old Apt</button>
+          </div>
+        </div>
+
         <div class="sim-body">
           <div class="sim-inputs-grid">
             <div class="sig-item">
@@ -123,7 +207,7 @@
             <label>Location Score (1-10): <span id="locVal">7</span></label>
             <input type="range" min="1" max="10" value="7" id="hpLoc" class="sim-range" oninput="document.getElementById('locVal').textContent=this.value">
           </div>
-          <button class="sim-btn" onclick="runHousePredictor()">🏠 Predict Price</button>
+          <button class="sim-btn" id="btn-house" onclick="runHousePredictor()">🏠 Predict Price</button>
           <div class="sim-result" id="housePriceResult" style="display:none"></div>
         </div>
       </div>
@@ -137,13 +221,33 @@
             <span class="tag tag-blue">CNN · Computer Vision</span>
           </div>
         </div>
-        <p>Draw a digit (0-9) on the canvas. A simulated CNN will recognize it and show confidence scores for each digit!</p>
+
+        <!-- How it works -->
+        <div class="sim-flow">
+          <div class="sf-step"><span class="sf-num">1</span>Draw a digit (0–9) on the canvas</div>
+          <div class="sf-step"><span class="sf-num">2</span>CNN analyzes pixel zones &amp; shapes</div>
+          <div class="sf-step"><span class="sf-num">3</span>Returns digit + confidence scores</div>
+        </div>
+
+        <p>Draw a digit (0-9) on the black canvas using your mouse or touch. The CNN analyzes pixel patterns — bounding box, stroke density, holes, and projections — to recognize it.</p>
+
+        <!-- Drawing tips -->
+        <div class="sim-dataset-section">
+          <div class="sds-label">💡 Drawing tips for accuracy:</div>
+          <div class="digit-tips">
+            <span class="dtip">Draw <strong>large</strong> — fill most of the canvas</span>
+            <span class="dtip">Draw <strong>slowly</strong> and clearly</span>
+            <span class="dtip"><strong>0</strong> = closed oval &nbsp;|&nbsp; <strong>1</strong> = vertical stroke</span>
+            <span class="dtip"><strong>8</strong> = two stacked loops &nbsp;|&nbsp; <strong>7</strong> = top bar + diagonal</span>
+          </div>
+        </div>
+
         <div class="sim-body">
           <div class="digit-canvas-wrap">
             <canvas id="digitCanvas" width="200" height="200"></canvas>
             <div class="digit-controls">
-              <button class="sim-btn-sm" onclick="clearDigit()">Clear</button>
-              <button class="sim-btn" onclick="recognizeDigit()">🔍 Recognize</button>
+              <button class="sim-btn-sm" id="btn-digit-clear" onclick="clearDigit()">🗑️ Clear</button>
+              <button class="sim-btn" id="btn-digit-recognize" onclick="recognizeDigit()">🔍 Recognize</button>
             </div>
           </div>
           <div class="digit-bars" id="digitBars">
@@ -161,18 +265,27 @@
             <span class="tag tag-orange">CNN · ResNet Demo</span>
           </div>
         </div>
-        <p>Select a sample image and see how a CNN (like ResNet) classifies it across 1000 ImageNet categories with confidence scores.</p>
+
+        <!-- How it works -->
+        <div class="sim-flow">
+          <div class="sf-step"><span class="sf-num">1</span>Select a sample image below</div>
+          <div class="sf-step"><span class="sf-num">2</span>ResNet-50 CNN processes features</div>
+          <div class="sf-step"><span class="sf-num">3</span>Top-5 ImageNet labels + confidence</div>
+        </div>
+
+        <p>Select a sample image and see how a CNN (ResNet-50) classifies it across 1000 ImageNet categories with confidence scores.</p>
+
         <div class="sim-body">
           <div class="img-selector">
-            <div class="img-opt active" onclick="selectImage(this, 'cat')" data-img="cat">🐱 Cat</div>
-            <div class="img-opt" onclick="selectImage(this, 'dog')" data-img="dog">🐕 Dog</div>
-            <div class="img-opt" onclick="selectImage(this, 'car')" data-img="car">🚗 Car</div>
-            <div class="img-opt" onclick="selectImage(this, 'flower')" data-img="flower">🌸 Flower</div>
-            <div class="img-opt" onclick="selectImage(this, 'bird')" data-img="bird">🦅 Bird</div>
-            <div class="img-opt" onclick="selectImage(this, 'pizza')" data-img="pizza">🍕 Pizza</div>
+            <div class="img-opt active" onclick="selectImage(this, 'cat')"  data-img="cat">🐱 Cat</div>
+            <div class="img-opt" onclick="selectImage(this, 'dog')"         data-img="dog">🐕 Dog</div>
+            <div class="img-opt" onclick="selectImage(this, 'car')"         data-img="car">🚗 Car</div>
+            <div class="img-opt" onclick="selectImage(this, 'flower')"      data-img="flower">🌸 Flower</div>
+            <div class="img-opt" onclick="selectImage(this, 'bird')"        data-img="bird">🦅 Bird</div>
+            <div class="img-opt" onclick="selectImage(this, 'pizza')"       data-img="pizza">🍕 Pizza</div>
           </div>
           <div class="img-preview" id="imgPreview">🐱</div>
-          <button class="sim-btn" onclick="runImageClassifier()">🔍 Classify Image</button>
+          <button class="sim-btn" id="btn-image" onclick="runImageClassifier()">🔍 Classify Image</button>
           <div class="sim-result" id="imageResult" style="display:none"></div>
         </div>
       </div>
@@ -186,7 +299,16 @@
             <span class="tag tag-yellow">LSTM · Time Series</span>
           </div>
         </div>
-        <p>See how LSTM networks model time-series stock data. Visualize historical data and the model's next-day predictions.</p>
+
+        <!-- How it works -->
+        <div class="sim-flow">
+          <div class="sf-step"><span class="sf-num">1</span>Pick a stock ticker below</div>
+          <div class="sf-step"><span class="sf-num">2</span>LSTM reads 30-day price history</div>
+          <div class="sf-step"><span class="sf-num">3</span>Predicts next-day direction &amp; price</div>
+        </div>
+
+        <p>See how LSTM networks model time-series stock data. Visualize historical data and the model's next-day prediction.</p>
+
         <div class="sim-body">
           <div class="stock-selector">
             <button class="stk-btn active" onclick="selectStock(this,'AAPL')">AAPL</button>
@@ -195,7 +317,7 @@
             <button class="stk-btn" onclick="selectStock(this,'TSLA')">TSLA</button>
           </div>
           <canvas id="stockCanvas" width="600" height="200" class="stock-canvas"></canvas>
-          <button class="sim-btn" onclick="runStockPredictor()">📈 Run LSTM Prediction</button>
+          <button class="sim-btn" id="btn-stock" onclick="runStockPredictor()">📈 Run LSTM Prediction</button>
           <div class="sim-result" id="stockResult" style="display:none"></div>
         </div>
       </div>
@@ -205,5 +327,6 @@
 
   <script src="js/main.js"></script>
   <script src="js/simulate.js"></script>
+  <script src="js/chatbot.js"></script>
 </body>
 </html>

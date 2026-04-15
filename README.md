@@ -8,36 +8,41 @@ An interactive, gamified web platform that makes learning **Artificial Intellige
 
 ## 🚀 Live Demo
 
-Open `index.html` in any modern browser — no build step, no server required.
+Open `index.html` in any modern browser — **no build step, no server, no npm required**.
+
+> Recommended: Chrome / Edge / Firefox 90+
 
 ---
 
 ## 📸 Screenshots
 
-| Home | Learn | Games |
-|------|-------|-------|
-| Hero with neural network animation | Structured lessons with sidebar | 6 interactive ML mini-games |
-
-| Quiz | Playground | Simulations |
-|------|------------|-------------|
-| Timed adaptive quizzes | 8 ML code templates with output | 6 real-world AI demos |
+| Page | Description |
+|------|-------------|
+| 🏠 **Home** | Hero with animated neural network, leaderboard, badges, progress dashboard |
+| 📚 **Learn** | 26 lessons across 5 tracks with AI hierarchy diagrams and inline quizzes |
+| 💻 **Playground** | Ace editor + Skulpt Python interpreter + 8 ML templates with visualizations |
+| 🎮 **Games** | 6 interactive ML mini-games (Gradient Descent, K-Means, Neuron Builder…) |
+| 🎯 **Quiz** | 6 quiz modes (AI Foundations → Mixed Challenge), timed, scored, streaked |
+| 🔬 **Simulate** | 6 real-world AI demos with datasets, flow steps, and fixed digit recognizer |
 
 ---
 
 ## ✅ Features Implemented
 
-| Requirement | Status | Details |
-|---|---|---|
-| 3.1 User Authentication | ✅ | Login / Register with localStorage, profile in navbar, session persistence |
-| 3.2 Structured Learning Modules | ✅ | Beginner → Intermediate → Advanced tracks, 16+ lessons with sidebar |
-| 3.3 Interactive Code Playground | ✅ | 8 ML templates (Linear Reg, KNN, Neural Net, etc.), simulated output + canvas viz |
-| 3.4 Mini-Games | ✅ | 6 games: Gradient Descent, Data Sorter, Neuron Builder, K-Means, Bias Buster, Perceptron |
-| 3.5 Quiz & Assessment | ✅ | 30 questions (3 topics + mixed), timer, streaks, instant feedback, XP scoring |
-| 3.6 Real-World Simulations | ✅ | 6 demos: Spam Detector, Sentiment Analysis, House Price, Digit Recognizer, Image Classifier, Stock LSTM |
-| 3.7 Progress Tracking Dashboard | ✅ | Dynamic XP circle, lesson completion tracking, module progress bars |
-| 3.8 Leaderboard & Gamification | ✅ | Global leaderboard, 8 XP-based badges, streaks, toast notifications |
-| 3.9 Responsive Web Design | ✅ | Desktop, tablet, and mobile layouts via CSS Grid + media queries |
-| 3.10 Deployment & Open Source | ✅ | Runs locally with no build tools — open `index.html` in browser |
+| # | Requirement | Status | Details |
+|---|---|---|---|
+| 3.1 | User Authentication | ✅ Done | Login / Register with localStorage, profile in navbar, +100 XP welcome bonus |
+| 3.2 | Structured Learning Modules | ✅ Done | 26 lessons: Foundations → ML → Deep Learning → NLP → Computer Vision (5 tracks) |
+| 3.3 | Interactive Code Playground | ✅ Done | Ace Editor + Skulpt Python, 8 ML templates, simulated viz + real execution mode |
+| 3.4 | Mini-Games | ✅ Done | 6 games: Gradient Descent, Decision Tree, Neuron Builder, Classification, K-Means, Perceptron |
+| 3.5 | Quiz & Assessment | ✅ Done | 6 quiz modes, 60+ questions, 20s timer, streaks, instant feedback, full results |
+| 3.6 | Real-World Simulations | ✅ Done | 6 demos with dataset samples, interaction flow, fixed pixel-analysis digit recognizer |
+| 3.7 | Progress Tracking Dashboard | ✅ Done | Live XP circle, completed lessons, module progress bars, streak tracker |
+| 3.8 | Leaderboard & Gamification | ✅ Done | Global leaderboard, 8 XP badges, streaks, XP toasts, badge unlock notifications |
+| 3.9 | Responsive Web Design | ✅ Done | Desktop, tablet, mobile via CSS Grid + media queries |
+| 3.10 | Deployment & Open Source | ✅ Done | Zero-dependency static site — open `index.html` directly |
+| ⭐ | **AI Chatbot Tutor** (Bonus) | ✅ Done | NeuroBot: 30+ ML/AI concept answers, voice read-aloud, page-aware chips, typing indicator |
+| ⭐ | **Voice Explanations** (Bonus) | ✅ Done | Web Speech API TTS built into chatbot — "Read aloud" on every bot message |
 
 ---
 
@@ -46,29 +51,30 @@ Open `index.html` in any modern browser — no build step, no server required.
 ```
 vibethon-TeamVisioneers-t143/
 │
-├── index.html          # Home — Hero, Features, Paths, Dashboard, Leaderboard
-├── learn.html          # Structured Learning Modules (Beginner → Advanced)
+├── index.html          # Home — Hero, Features, Learning Paths, Dashboard, Leaderboard
+├── learn.html          # 26 Lessons across 5 tracks (Foundations → CV)
 ├── games.html          # 6 Interactive ML Mini-Games
-├── quiz.html           # Adaptive Quiz System (30+ questions)
-├── playground.html     # In-browser Code Playground (8 ML templates)
-├── simulate.html       # 6 Real-World AI/ML Simulations
+├── quiz.html           # Quiz System — 6 modes, 60+ questions, timer, scoring
+├── playground.html     # Code Playground — Ace Editor + Skulpt Python
+├── simulate.html       # 6 Real-World AI/ML Simulations with datasets & flow
 │
 ├── css/
 │   ├── style.css       # Global design system (dark theme, glassmorphism, auth, leaderboard)
-│   ├── learn.css       # Learn page styles
+│   ├── learn.css       # Learning module styles
 │   ├── games.css       # Games page styles
-│   ├── quiz.css        # Quiz page styles
-│   ├── playground.css  # Playground page styles
-│   └── simulate.css    # Simulations page styles
+│   ├── quiz.css        # Quiz arena styles
+│   ├── playground.css  # Code editor styles
+│   └── simulate.css    # Simulation cards + datasets + interaction flow
 │
 └── js/
-    ├── main.js         # Shared: XP system, auth, leaderboard, badges, dashboard
-    ├── home.js         # Homepage stat counter animations
-    ├── learn.js        # Lesson loading, progress tracking, inline quizzes
+    ├── main.js         # Shared: XP, auth, leaderboard, badges, dashboard (all pages)
+    ├── home.js         # Hero stat counter animations
+    ├── learn.js        # 26 lesson content, sidebar, progress tracking, inline quizzes
     ├── games.js        # 6 fully interactive ML games with Canvas
-    ├── quiz.js         # Full quiz engine (timer, scoring, results)
-    ├── playground.js   # Code editor, 8 ML templates, simulated execution + viz
-    └── simulate.js     # 6 real-world AI simulation demos
+    ├── quiz.js         # Full quiz engine (timer, scoring, streaks, results)
+    ├── playground.js   # Ace editor, 8 ML templates, Skulpt execution, Canvas viz
+    ├── simulate.js     # 6 AI demos + pixel-analysis digit recognizer + datasets
+    └── chatbot.js      # 🤖 NeuroBot AI Tutor (knowledge base, voice, page-aware)
 ```
 
 ---
@@ -77,84 +83,100 @@ vibethon-TeamVisioneers-t143/
 
 ### Option A — Open Directly (Recommended)
 ```bash
-# Clone or download the repository
+# Clone or download
 git clone https://github.com/TeamVisioneers/vibethon-T143.git
 
 # Open in browser
 # Windows:
 start index.html
-
 # macOS:
 open index.html
-
 # Linux:
 xdg-open index.html
 ```
 
-### Option B — Local Server (Optional, for best experience)
+### Option B — Local Dev Server (optional, no CORS issues)
 ```bash
-# Using Python 3
+# Python 3
 python -m http.server 8080
 
-# Using Node.js
+# Node.js
 npx serve .
 
 # Then open: http://localhost:8080
 ```
 
-> No build tools, npm install, or compilation required. Pure HTML + CSS + JS.
+> **No build tools, no npm install, no compilation required.** Pure HTML + CSS + JS.
 
 ---
 
-## 🎮 Key Features Walkthrough
+## 🎮 Feature Walkthrough
 
-### 1. 🔐 Authentication System
-- Register with name, email, and password
-- Login/Logout with persistent session (localStorage)
-- Available on every page via navbar
-- +100 XP welcome bonus on registration
+### 1. 🔐 Authentication
+- Register with name, email, password — +100 XP welcome bonus
+- Login/logout with persistent session (localStorage)
+- Available on every page via navbar; profile shown when logged in
 
-### 2. 📚 Structured Learning (learn.html)
-- 3 tracks: **Foundations**, **ML Engineering**, **Deep Learning**
-- 16 lessons with sidebar navigation
-- Concept explanations, code examples, and use-cases
-- Inline knowledge-check quizzes per lesson
+### 2. 📚 Structured Learning (26 lessons, 5 tracks)
+| Track | Lessons | Level |
+|-------|---------|-------|
+| 🌱 Foundations | What is AI, ML Types, Linear Algebra, Stats, Python | Beginner |
+| ⚙️ Machine Learning | Supervised, Unsupervised, Decision Trees, SVM, Clustering, Evaluation | Intermediate |
+| 🧠 Deep Learning | Neural Networks, CNN, RNN/LSTM, Transformers, Generative AI | Advanced |
+| 💬 NLP | Intro NLP, Tokenization, Sentiment, Seq2Seq, BERT/GPT | Intermediate–Advanced |
+| 👁️ Computer Vision | Intro CV, Image Classification, Object Detection, Segmentation, GANs | Intermediate–Advanced |
 
-### 3. 💻 Code Playground (playground.html)
-- 8 ML algorithm templates ready to run
-- Simulated Python output with real algorithmic results
-- Canvas-based visualizations (scatter plots, loss curves, decision trees)
-- Keyboard shortcut: `Ctrl+Enter` to run
+- Visual AI hierarchy diagram, type cards, apps showcase, inline quiz per lesson
 
-### 4. 🎮 Mini-Games (games.html)
-| Game | Concept |
-|------|---------|
-| Gradient Descent | Optimization, learning rate |
-| Data Sorter | Classification, drag-and-drop |
-| Neuron Builder | Neural net architecture |
-| K-Means Cluster | Unsupervised clustering |
-| Bias Buster | AI ethics, fairness |
-| Perceptron Game | Single neuron, AND/OR gates |
+### 3. 💻 Code Playground
+- **Ace Editor** — syntax highlighting, auto-indent, keyboard shortcuts
+- **Simulated mode** — rich ML visualizations from 8 templates
+- **Execute mode** — runs real Python via **Skulpt** interpreter
+- Templates: Linear Regression, KNN, K-Means, Neural Net, Decision Tree, Gradient Descent, Naive Bayes, Perceptron
+- `Ctrl+Enter` to run
 
-### 5. 🎯 Quiz System (quiz.html)
-- 4 quiz modes: AI Foundations, Machine Learning, Deep Learning, Mixed
-- 20-second timer per question
-- Streak bonuses (+10 XP per 3-question streak)
-- Full results: accuracy, XP earned, question-by-question breakdown
+### 4. 🎮 Mini-Games (6 games)
+| Game | Concept | XP |
+|------|---------|----|
+| Neuron Builder | Neural net architecture | +100 |
+| Decision Tree Explorer | Splits, entropy | +110 |
+| Gradient Descent ⭐ | Optimization, learning rate | +150 |
+| Classification Challenge | Decision boundaries, F1 | +140 |
+| K-Means Adventure | Unsupervised clustering | +130 |
+| Perceptron Trainer | Weights, decision boundary | +180 |
 
-### 6. 🔬 Simulations (simulate.html)
-- **Spam Detector** — Naive Bayes keyword analysis
-- **Sentiment Analysis** — Lexicon-based NLP
-- **House Price Predictor** — Linear regression model
-- **Digit Recognizer** — Draw on canvas, CNN classifies
-- **Image Classifier** — Top-5 ImageNet predictions
-- **Stock Predictor** — LSTM time-series with live chart
+### 5. 🎯 Quiz System (6 modes, 60+ questions)
+- AI Foundations (10 Q, 200 XP) · ML (10 Q, 300 XP) · Deep Learning (10 Q, 400 XP)
+- NLP (10 Q, 400 XP) · Computer Vision (10 Q, 400 XP) · Mixed Challenge (15 Q, 500 XP)
+- 20-second timer, streak bonuses (+10 XP per 3-streak), full results breakdown
 
-### 7. 🏆 Gamification
-- **XP System**: Every action earns XP (lessons, quizzes, games, simulations)
-- **8 Badges**: Unlock progressively (100 XP → 2000 XP)
-- **Leaderboard**: Global rankings with your position highlighted
-- **Streaks**: Track daily learning consistency
+### 6. 🔬 Simulations (6 demos)
+Each simulation includes **dataset samples** to click, **interaction flow steps**, and AI model explanations:
+- 📧 **Spam Detector** — Naive Bayes keyword scoring + 4 dataset presets
+- 😊 **Sentiment Analysis** — Lexicon-based NLP + 4 presets (pos/neg/neutral/rave)
+- 🏠 **House Price Predictor** — Linear regression, feature impact bars + 4 house presets
+- ✏️ **Digit Recognizer** — **Real pixel analysis** (bounding box, hole detection, zone grid, softmax) — not random!
+- 🖼️ **Image Classifier** — ResNet-50 Top-5 ImageNet results
+- 📈 **Stock Predictor** — LSTM time-series with live Canvas chart
+
+### 7. 📈 Progress Dashboard
+- Live XP counter (updated in real-time)
+- Circular progress indicator (% of lessons completed)
+- Module-level progress bars (AI Basics, ML Models, Deep Learning)
+- 7-day streak tracker
+
+### 8. 🏆 Leaderboard & Badges
+- Global leaderboard with real user injection + mock entries
+- 8 XP-based badges: 🏆 AI Pioneer → 🌊 Deep Diver
+- Toast notifications for new badge unlocks
+
+### 9. 🤖 AI Chatbot Tutor (Bonus)
+NeuroBot — floating chat widget on **every page**:
+- **30+ ML/AI topic answers** (neural networks, backprop, CNN, RNN, transformers, loss functions, metrics…)
+- **Voice read-aloud** via Web Speech API (TTS), toggleable per-message
+- **Page-aware quick chips** — different suggested questions per page
+- **Typing indicator** animation
+- **Clear/mute/close controls**
 
 ---
 
@@ -164,11 +186,13 @@ npx serve .
 |-------|-----------|
 | Structure | HTML5 semantic markup |
 | Styling | Vanilla CSS (custom design system, glassmorphism, dark mode) |
-| Logic | Vanilla JavaScript (ES6+) |
+| Logic | Vanilla JavaScript (ES6+, IIFE, Canvas API) |
+| Code Editor | [Ace Editor](https://ace.c9.io/) (CDN) |
+| Python Runtime | [Skulpt](http://skulpt.org/) (CDN) |
+| Voice | Web Speech API (built-in browser) |
 | Storage | localStorage (XP, progress, auth, quiz scores) |
 | Fonts | Google Fonts: Outfit + JetBrains Mono |
-| Canvas | HTML5 Canvas API (neural viz, games, charts) |
-| Hosting | File-based — opens with `index.html` |
+| Hosting | Static files — open `index.html` directly |
 
 ---
 
