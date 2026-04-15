@@ -6,11 +6,12 @@ An interactive, gamified web platform that makes learning **Artificial Intellige
 
 ---
 
-## 🚀 Live Demo
+## 🌐 Live Demo
 
-Open `index.html` in any modern browser — **no build step, no server, no npm required**.
+🔗 **[https://adityasuryakar.github.io/vibethon-TeamVisioneers-t143/](https://adityasuryakar.github.io/vibethon-TeamVisioneers-t143/)**
 
-> Recommended: Chrome / Edge / Firefox 90+
+> Recommended: Chrome / Edge / Firefox 90+  
+> No build step, no server, no npm required — pure static site.
 
 ---
 
@@ -31,18 +32,19 @@ Open `index.html` in any modern browser — **no build step, no server, no npm r
 
 | # | Requirement | Status | Details |
 |---|---|---|---|
-| 3.1 | User Authentication | ✅ Done | Login / Register with localStorage, profile in navbar, +100 XP welcome bonus |
+| 3.1 | User Authentication | ✅ Done | Login / Register with localStorage, OAuth-style Google/GitHub flow, profile modal, +100 XP welcome bonus |
 | 3.2 | Structured Learning Modules | ✅ Done | 26 lessons: Foundations → ML → Deep Learning → NLP → Computer Vision (5 tracks) |
 | 3.3 | Interactive Code Playground | ✅ Done | Ace Editor + Skulpt Python, 8 ML templates, simulated viz + real execution mode |
 | 3.4 | Mini-Games | ✅ Done | 6 games: Gradient Descent, Decision Tree, Neuron Builder, Classification, K-Means, Perceptron |
 | 3.5 | Quiz & Assessment | ✅ Done | 6 quiz modes, 60+ questions, 20s timer, streaks, instant feedback, full results |
 | 3.6 | Real-World Simulations | ✅ Done | 6 demos with dataset samples, interaction flow, fixed pixel-analysis digit recognizer |
-| 3.7 | Progress Tracking Dashboard | ✅ Done | Live XP circle, completed lessons, module progress bars, streak tracker |
+| 3.7 | Progress Tracking Dashboard | ✅ Done | **Real-time** XP tracking, per-track progress bars, floating progress widget, cross-tab sync, activity feed |
 | 3.8 | Leaderboard & Gamification | ✅ Done | Global leaderboard, 8 XP badges, streaks, XP toasts, badge unlock notifications |
 | 3.9 | Responsive Web Design | ✅ Done | Desktop, tablet, mobile via CSS Grid + media queries |
-| 3.10 | Deployment & Open Source | ✅ Done | Zero-dependency static site — open `index.html` directly |
-| ⭐ | **AI Chatbot Tutor** (Bonus) | ✅ Done | NeuroBot: 30+ ML/AI concept answers, voice read-aloud, page-aware chips, typing indicator |
-| ⭐ | **Voice Explanations** (Bonus) | ✅ Done | Web Speech API TTS built into chatbot — "Read aloud" on every bot message |
+| 3.10 | Deployment & Open Source | ✅ Done | Deployed on GitHub Pages — zero-dependency static site |
+| ⭐ | **AI Chatbot Tutor**  | ✅ Done | NeuroBot: 30+ ML/AI concept answers, voice read-aloud, page-aware chips, typing indicator |
+| ⭐ | **Voice Explanations**  | ✅ Done | Web Speech API TTS built into chatbot — "Read aloud" on every bot message |
+| ⭐ | **Real-Time Progress Tracker**  | ✅ Done | Floating analytics widget with SVG ring, track bars, live activity feed, cross-tab sync |
 
 ---
 
@@ -51,40 +53,46 @@ Open `index.html` in any modern browser — **no build step, no server, no npm r
 ```
 vibethon-TeamVisioneers-t143/
 │
-├── index.html          # Home — Hero, Features, Learning Paths, Dashboard, Leaderboard
-├── learn.html          # 26 Lessons across 5 tracks (Foundations → CV)
-├── games.html          # 6 Interactive ML Mini-Games
-├── quiz.html           # Quiz System — 6 modes, 60+ questions, timer, scoring
-├── playground.html     # Code Playground — Ace Editor + Skulpt Python
-├── simulate.html       # 6 Real-World AI/ML Simulations with datasets & flow
+├── index.html              # Home — Hero, Features, Learning Paths, Dashboard, Leaderboard
+├── learn.html              # 26 Lessons across 5 tracks (Foundations → CV)
+├── games.html              # 6 Interactive ML Mini-Games
+├── quiz.html               # Quiz System — 6 modes, 60+ questions, timer, scoring
+├── playground.html         # Code Playground — Ace Editor + Skulpt Python
+├── simulate.html           # 6 Real-World AI/ML Simulations with datasets & flow
+├── README.md               # Project documentation (this file)
 │
 ├── css/
-│   ├── style.css       # Global design system (dark theme, glassmorphism, auth, leaderboard)
-│   ├── learn.css       # Learning module styles
-│   ├── games.css       # Games page styles
-│   ├── quiz.css        # Quiz arena styles
-│   ├── playground.css  # Code editor styles
-│   └── simulate.css    # Simulation cards + datasets + interaction flow
+│   ├── style.css           # Global design system (dark theme, glassmorphism, auth, leaderboard)
+│   ├── learn.css           # Learning module styles
+│   ├── games.css           # Games page styles
+│   ├── quiz.css            # Quiz arena styles
+│   ├── playground.css      # Code editor styles
+│   └── simulate.css        # Simulation cards + datasets + interaction flow
 │
 └── js/
-    ├── main.js         # Shared: XP, auth, leaderboard, badges, dashboard (all pages)
-    ├── home.js         # Hero stat counter animations
-    ├── learn.js        # 26 lesson content, sidebar, progress tracking, inline quizzes
-    ├── games.js        # 6 fully interactive ML games with Canvas
-    ├── quiz.js         # Full quiz engine (timer, scoring, streaks, results)
-    ├── playground.js   # Ace editor, 8 ML templates, Skulpt execution, Canvas viz
-    ├── simulate.js     # 6 AI demos + pixel-analysis digit recognizer + datasets
-    └── chatbot.js      # 🤖 NeuroBot AI Tutor (knowledge base, voice, page-aware)
+    ├── main.js             # Shared: XP system, auth, leaderboard, badges, dashboard (all pages)
+    ├── home.js             # Hero stat counter animations
+    ├── learn.js            # 26 lesson content, sidebar, progress tracking, inline quizzes
+    ├── games.js            # 6 fully interactive ML games with Canvas
+    ├── quiz.js             # Full quiz engine (timer, scoring, streaks, results)
+    ├── playground.js       # Ace editor, 8 ML templates, Skulpt execution, Canvas viz
+    ├── simulate.js         # 6 AI demos + pixel-analysis digit recognizer + datasets
+    ├── chatbot.js          # 🤖 NeuroBot AI Tutor (knowledge base, voice, page-aware)
+    └── progress-tracker.js # 📊 Real-time progress widget (SVG ring, track bars, activity feed)
 ```
 
 ---
 
 ## 🛠️ Setup Instructions
 
-### Option A — Open Directly (Recommended)
+### Option A — Visit Live Site (Recommended)
+👉 **[https://adityasuryakar.github.io/vibethon-TeamVisioneers-t143/](https://adityasuryakar.github.io/vibethon-TeamVisioneers-t143/)**
+
+### Option B — Run Locally
 ```bash
-# Clone or download
-git clone https://github.com/TeamVisioneers/vibethon-T143.git
+# Clone the repository
+git clone https://github.com/AdityaSuryakar/vibethon-TeamVisioneers-t143.git
+cd vibethon-TeamVisioneers-t143
 
 # Open in browser
 # Windows:
@@ -95,7 +103,7 @@ open index.html
 xdg-open index.html
 ```
 
-### Option B — Local Dev Server (optional, no CORS issues)
+### Option C — Local Dev Server (optional, avoids CORS)
 ```bash
 # Python 3
 python -m http.server 8080
@@ -113,9 +121,11 @@ npx serve .
 ## 🎮 Feature Walkthrough
 
 ### 1. 🔐 Authentication
-- Register with name, email, password — +100 XP welcome bonus
+- Register with name, email, password — **+100 XP** welcome bonus
+- OAuth-style Google & GitHub sign-in flow (simulated, no backend needed)
 - Login/logout with persistent session (localStorage)
-- Available on every page via navbar; profile shown when logged in
+- Profile modal with photo upload, bio, password change
+- Available on every page via navbar; profile dropdown when logged in
 
 ### 2. 📚 Structured Learning (26 lessons, 5 tracks)
 | Track | Lessons | Level |
@@ -126,7 +136,8 @@ npx serve .
 | 💬 NLP | Intro NLP, Tokenization, Sentiment, Seq2Seq, BERT/GPT | Intermediate–Advanced |
 | 👁️ Computer Vision | Intro CV, Image Classification, Object Detection, Segmentation, GANs | Intermediate–Advanced |
 
-- Visual AI hierarchy diagram, type cards, apps showcase, inline quiz per lesson
+- Visual AI hierarchy diagrams, type cards, apps showcase, inline quiz per lesson
+- XP earned per lesson completion, tracked in real-time
 
 ### 3. 💻 Code Playground
 - **Ace Editor** — syntax highlighting, auto-indent, keyboard shortcuts
@@ -137,7 +148,7 @@ npx serve .
 
 ### 4. 🎮 Mini-Games (6 games)
 | Game | Concept | XP |
-|------|---------|----|
+|------|---------|-----|
 | Neuron Builder | Neural net architecture | +100 |
 | Decision Tree Explorer | Splits, entropy | +110 |
 | Gradient Descent ⭐ | Optimization, learning rate | +150 |
@@ -159,11 +170,15 @@ Each simulation includes **dataset samples** to click, **interaction flow steps*
 - 🖼️ **Image Classifier** — ResNet-50 Top-5 ImageNet results
 - 📈 **Stock Predictor** — LSTM time-series with live Canvas chart
 
-### 7. 📈 Progress Dashboard
-- Live XP counter (updated in real-time)
-- Circular progress indicator (% of lessons completed)
-- Module-level progress bars (AI Basics, ML Models, Deep Learning)
-- 7-day streak tracker
+### 7. 📊 Real-Time Progress Tracker
+- **Floating progress widget** accessible on every page (📊 button)
+- **SVG ring indicator** showing overall completion percentage
+- **Per-track progress bars** — Foundations, ML, Deep Learning, NLP, Computer Vision
+- **Live activity feed** — recent lessons, quizzes, games, simulations logged with timestamps
+- **Cross-tab sync** — updates reflected across open browser tabs in real-time
+- **Quick stats grid** — lessons completed, quizzes taken, games played, simulations run
+- **Streak tracking** — consecutive days of activity
+- **Auto-refresh** every 3 seconds for real-time feel
 
 ### 8. 🏆 Leaderboard & Badges
 - Global leaderboard with real user injection + mock entries
@@ -190,9 +205,9 @@ NeuroBot — floating chat widget on **every page**:
 | Code Editor | [Ace Editor](https://ace.c9.io/) (CDN) |
 | Python Runtime | [Skulpt](http://skulpt.org/) (CDN) |
 | Voice | Web Speech API (built-in browser) |
-| Storage | localStorage (XP, progress, auth, quiz scores) |
+| Storage | localStorage (XP, progress, auth, quiz scores, activity log) |
 | Fonts | Google Fonts: Outfit + JetBrains Mono |
-| Hosting | Static files — open `index.html` directly |
+| Hosting | [GitHub Pages](https://adityasuryakar.github.io/vibethon-TeamVisioneers-t143/) |
 
 ---
 
