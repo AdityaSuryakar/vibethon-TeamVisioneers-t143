@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Learn AI & ML – NeuroLearn</title>
+  <meta name="description" content="Structured AIML learning with interactive lessons on AI foundations, machine learning, deep learning, NLP, and computer vision." />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/learn.css" />
+</head>
+<body>
+  <div class="bg-canvas"></div>
+  <div class="noise-overlay"></div>
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <div class="logo-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="13" stroke="url(#lg1)" stroke-width="2"/><circle cx="14" cy="14" r="4" fill="url(#lg1)"/><path d="M14 1v6M14 21v6M1 14h6M21 14h6" stroke="url(#lg1)" stroke-width="2" stroke-linecap="round"/><circle cx="6" cy="6" r="2" fill="url(#lg2)"/><circle cx="22" cy="6" r="2" fill="url(#lg2)"/><circle cx="6" cy="22" r="2" fill="url(#lg2)"/><circle cx="22" cy="22" r="2" fill="url(#lg2)"/><defs><linearGradient id="lg1" x1="0" y1="0" x2="28" y2="28" gradientUnits="userSpaceOnUse"><stop stop-color="#a78bfa"/><stop offset="1" stop-color="#38bdf8"/></linearGradient><linearGradient id="lg2" x1="0" y1="0" x2="28" y2="28" gradientUnits="userSpaceOnUse"><stop stop-color="#f472b6"/><stop offset="1" stop-color="#a78bfa"/></linearGradient></defs></svg></div>
+        <span class="logo-text">Neuro<span class="logo-accent">Learn</span></span>
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html" class="nav-link" id="nav-home">Home</a>
+        <a href="learn.html" class="nav-link active" id="nav-learn">Learn</a>
+        <a href="playground.html" class="nav-link" id="nav-playground">Playground</a>
+        <a href="games.html" class="nav-link" id="nav-games">Mini Games</a>
+        <a href="quiz.html" class="nav-link" id="nav-quiz">Quizzes</a>
+        <a href="simulate.html" class="nav-link" id="nav-simulate">Simulate</a>
+      </div>
+      <div class="nav-actions">
+        <div class="xp-badge" id="xpBadge"><span class="xp-icon">⚡</span><span id="xpCount">0 XP</span></div>
+        <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Hero -->
+  <div class="page-hero">
+    <div class="page-hero-content">
+      <div class="page-tag">📚 Learning Hub</div>
+      <h1 class="page-title">AIML <span class="gradient-text">Learning Modules</span></h1>
+      <p class="page-subtitle">From AI basics to advanced deep learning — structured, interactive lessons to guide your learning journey.</p>
+    </div>
+    <!-- Search & Filter Bar -->
+    <div class="learn-controls">
+      <div class="search-box">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="7.5" cy="7.5" r="6" stroke="#94a3b8" stroke-width="1.5"/><path d="M12 12l4 4" stroke="#94a3b8" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <input type="text" id="searchInput" placeholder="Search lessons, topics..." />
+      </div>
+      <div class="filter-tabs" id="filterTabs">
+        <button class="filter-tab active" data-filter="all">All Topics</button>
+        <button class="filter-tab" data-filter="foundations">🌱 Foundations</button>
+        <button class="filter-tab" data-filter="ml">⚙️ Machine Learning</button>
+        <button class="filter-tab" data-filter="dl">🧠 Deep Learning</button>
+        <button class="filter-tab" data-filter="nlp">💬 NLP</button>
+        <button class="filter-tab" data-filter="cv">👁️ Computer Vision</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modules Container -->
+  <div class="learn-container" id="learnContainer">
+    <!-- Left: Module List -->
+    <aside class="modules-sidebar" id="modulesSidebar">
+      <div class="sidebar-section">
+        <div class="ss-header">
+          <span class="ss-tag">🌱 Foundations</span>
+          <span class="ss-count">5 lessons</span>
+        </div>
+        <div class="lesson-list" data-category="foundations">
+          <div class="lesson-item active" data-lesson="what-is-ai" onclick="loadLesson('what-is-ai')">
+            <div class="li-status done">✓</div>
+            <div class="li-info">
+              <span class="li-title">What is Artificial Intelligence?</span>
+              <span class="li-meta">⏱ 8 min · Beginner</span>
+            </div>
+          </div>
+          <div class="lesson-item" data-lesson="ml-types" onclick="loadLesson('ml-types')">
+            <div class="li-status">2</div>
+            <div class="li-info">
+              <span class="li-title">Types of Machine Learning</span>
+              <span class="li-meta">⏱ 10 min · Beginner</span>
+            </div>
+          </div>
+          <div class="lesson-item" data-lesson="math-for-ml" onclick="loadLesson('math-for-ml')">
+            <div class="li-status">3</div>
+            <div class="li-info">
+              <span class="li-title">Math for ML: Linear Algebra</span>
+              <span class="li-meta">⏱ 15 min · Beginner</span>
+            </div>
+          </div>
+          <div class="lesson-item" data-lesson="stats-probability" onclick="loadLesson('stats-probability')">
+            <div class="li-status">4</div>
+            <div class="li-info">
+              <span class="li-title">Statistics & Probability</span>
+              <span class="li-meta">⏱ 12 min · Beginner</span>
+            </div>
+          </div>
+          <div class="lesson-item" data-lesson="python-ai" onclick="loadLesson('python-ai')">
+            <div class="li-status">5</div>
+            <div class="li-info">
+              <span class="li-title">Python for AI Basics</span>
+              <span class="li-meta">⏱ 20 min · Beginner</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="ss-header">
+          <span class="ss-tag" style="color:#38bdf8; border-color:rgba(56,189,248,0.3); background:rgba(56,189,248,0.1);">⚙️ Machine Learning</span>
+          <span class="ss-count">6 lessons</span>
+        </div>
+        <div class="lesson-list" data-category="ml">
+          <div class="lesson-item" data-lesson="supervised-learning" onclick="loadLesson('supervised-learning')">
+            <div class="li-status">1</div>
+            <div class="li-info">
+              <span class="li-title">Supervised Learning</span>
+              <span class="li-meta">⏱ 15 min · Intermediate</span>
+            </div>
+          </div>
+          <div class="lesson-item" data-lesson="unsupervised" onclick="loadLesson('unsupervised')">
+            <div class="li-status">2</div>
+            <div class="li-info">
+              <span class="li-title">Unsupervised Learning</span>
+              <span class="li-meta">⏱ 12 min · Intermediate</span>
+            </div>
+          </div>
+          <div class="lesson-item" data-lesson="decision-trees" onclick="loadLesson('decision-trees')">
+            <div class="li-status">3</div>
+            <div class="li-info">
+              <span class="li-title">Decision Trees & Random Forests</span>
+              <span class="li-meta">⏱ 18 min · Intermediate</span>
+            </div>
+          </div>
+          <div class="lesson-item" data-lesson="svm" onclick="loadLesson('svm')">
+            <div class="li-status">4</div>
+            <div class="li-info">
+              <span class="li-title">Support Vector Machines</span>
+              <span class="li-meta">⏱ 14 min · Intermediate</span>
+            </div>
+          </div>
+          <div class="lesson-item" data-lesson="clustering" onclick="loadLesson('clustering')">
+            <div class="li-status">5</div>
+            <div class="li-info">
+              <span class="li-title">Clustering Algorithms</span>
+              <span class="li-meta">⏱ 13 min · Intermediate</span>
+            </div>
+          </div>
+          <div class="lesson-item" data-lesson="model-evaluation" onclick="loadLesson('model-evaluation')">
+            <div class="li-status">6</div>
+            <div class="li-info">
+              <span class="li-title">Model Evaluation & Tuning</span>
+              <span class="li-meta">⏱ 16 min · Intermediate</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="ss-header">
+          <span class="ss-tag" style="color:#f472b6; border-color:rgba(244,114,182,0.3); background:rgba(244,114,182,0.1);">🧠 Deep Learning</span>
+          <span class="ss-count">5 lessons</span>
+        </div>
+        <div class="lesson-list" data-category="dl">
+          <div class="lesson-item" data-lesson="neural-networks" onclick="loadLesson('neural-networks')">
+            <div class="li-status">1</div>
+            <div class="li-info">
+              <span class="li-title">Neural Networks Fundamentals</span>
+              <span class="li-meta">⏱ 20 min · Advanced</span>
+            </div>
+          </div>
+          <div class="lesson-item" data-lesson="cnn" onclick="loadLesson('cnn')">
+            <div class="li-status">2</div>
+            <div class="li-info">
+              <span class="li-title">Convolutional Neural Networks</span>
+              <span class="li-meta">⏱ 22 min · Advanced</span>
+            </div>
+          </div>
+          <div class="lesson-item" data-lesson="rnn-lstm" onclick="loadLesson('rnn-lstm')">
+            <div class="li-status">3</div>
+            <div class="li-info">
+              <span class="li-title">RNN & LSTM Networks</span>
+              <span class="li-meta">⏱ 20 min · Advanced</span>
+            </div>
+          </div>
+          <div class="lesson-item" data-lesson="transformers" onclick="loadLesson('transformers')">
+            <div class="li-status">4</div>
+            <div class="li-info">
+              <span class="li-title">Transformers & Attention</span>
+              <span class="li-meta">⏱ 25 min · Advanced</span>
+            </div>
+          </div>
+          <div class="lesson-item" data-lesson="generative-ai" onclick="loadLesson('generative-ai')">
+            <div class="li-status">5</div>
+            <div class="li-info">
+              <span class="li-title">Generative AI & LLMs</span>
+              <span class="li-meta">⏱ 22 min · Advanced</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Right: Lesson Content -->
+    <main class="lesson-content" id="lessonContent">
+      <div class="lesson-header">
+        <div class="lh-meta">
+          <span class="tag tag-green">🌱 Foundations</span>
+          <span class="lh-time">⏱ 8 min read</span>
+        </div>
+        <h1 class="lesson-title">What is Artificial Intelligence?</h1>
+        <div class="lesson-progress-bar">
+          <div class="lpb-fill" id="lessonProgress" style="width:0%"></div>
+        </div>
+      </div>
+
+      <div class="lesson-body" id="lessonBody">
+        <div class="lesson-intro">
+          <div class="concept-card" style="--cc-color: #a78bfa;">
+            <div class="cc-icon">🧠</div>
+            <div class="cc-content">
+              <h3>Core Concept</h3>
+              <p>Artificial Intelligence is the simulation of human intelligence in machines, enabling them to perform tasks that typically require human cognition.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="lesson-section">
+          <h2>What is AI?</h2>
+          <p>Artificial Intelligence (AI) is a broad field of computer science focused on creating systems that can perform tasks that normally require <strong>human intelligence</strong>. These tasks include:</p>
+          <ul class="lesson-list">
+            <li>🗣️ Understanding natural language (NLP)</li>
+            <li>👁️ Recognizing images and objects (Computer Vision)</li>
+            <li>🎯 Making decisions and solving problems</li>
+            <li>🎵 Creating art, music, and text (Generative AI)</li>
+            <li>🤖 Moving and interacting with the physical world (Robotics)</li>
+          </ul>
+        </div>
+
+        <div class="lesson-section">
+          <h2>The AI Hierarchy</h2>
+          <div class="hierarchy-viz">
+            <div class="hv-item" style="--w:100%; --col: rgba(167,139,250,0.15); --border: rgba(167,139,250,0.4);">
+              <div class="hv-label">Artificial Intelligence (AI)</div>
+              <div class="hv-desc">Broadest field — any technique enabling machines to mimic human behavior</div>
+            </div>
+            <div class="hv-item" style="--w:70%; --col: rgba(56,189,248,0.15); --border: rgba(56,189,248,0.4);">
+              <div class="hv-label">Machine Learning (ML)</div>
+              <div class="hv-desc">Subset of AI — learns from data without being explicitly programmed</div>
+            </div>
+            <div class="hv-item" style="--w:45%; --col: rgba(244,114,182,0.15); --border: rgba(244,114,182,0.4);">
+              <div class="hv-label">Deep Learning (DL)</div>
+              <div class="hv-desc">Subset of ML — uses neural networks with many layers</div>
+            </div>
+            <div class="hv-item" style="--w:30%; --col: rgba(52,211,153,0.15); --border: rgba(52,211,153,0.4);">
+              <div class="hv-label">Generative AI</div>
+              <div class="hv-desc">Creates new content — text, images, code, audio</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lesson-section">
+          <h2>Types of AI by Capability</h2>
+          <div class="types-grid">
+            <div class="type-card">
+              <div class="tc-icon" style="color:#34d399">🤖</div>
+              <h4>Narrow AI (ANI)</h4>
+              <p>Designed for specific tasks. All current AI systems fall here — chess engines, image recognizers, chatbots.</p>
+              <span class="tag tag-green">Current Reality</span>
+            </div>
+            <div class="type-card">
+              <div class="tc-icon" style="color:#a78bfa">🧠</div>
+              <h4>General AI (AGI)</h4>
+              <p>Matches human-level intelligence across all domains. Theoretical — does not yet exist.</p>
+              <span class="tag tag-purple">Future Goal</span>
+            </div>
+            <div class="type-card">
+              <div class="tc-icon" style="color:#f472b6">🌟</div>
+              <h4>Super AI (ASI)</h4>
+              <p>Surpasses human intelligence in all areas. Purely hypothetical and subject of much debate.</p>
+              <span class="tag tag-pink">Speculative</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="lesson-section">
+          <h2>Real-world Applications</h2>
+          <div class="apps-showcase">
+            <div class="app-item"><span>🏥</span><div><strong>Healthcare</strong><p>Disease diagnosis, drug discovery, medical imaging analysis</p></div></div>
+            <div class="app-item"><span>🚗</span><div><strong>Autonomous Vehicles</strong><p>Self-driving cars, obstacle detection, route planning</p></div></div>
+            <div class="app-item"><span>💬</span><div><strong>Virtual Assistants</strong><p>Siri, Alexa, Google Assistant — natural language processing</p></div></div>
+            <div class="app-item"><span>🎬</span><div><strong>Entertainment</strong><p>Netflix recommendations, movie CGI, game AI opponents</p></div></div>
+            <div class="app-item"><span>🏦</span><div><strong>Finance</strong><p>Fraud detection, algorithmic trading, credit scoring</p></div></div>
+            <div class="app-item"><span>🌍</span><div><strong>Climate</strong><p>Weather prediction, climate modeling, energy optimization</p></div></div>
+          </div>
+        </div>
+
+        <div class="lesson-section">
+          <h2>Quick Knowledge Check</h2>
+          <div class="inline-quiz" id="inlineQuiz">
+            <div class="iq-question">Which of the following is a correct relationship?</div>
+            <div class="iq-options">
+              <button class="iq-btn" onclick="checkIQ(this, false)">AI is a subset of Machine Learning</button>
+              <button class="iq-btn" onclick="checkIQ(this, true)">Machine Learning is a subset of AI</button>
+              <button class="iq-btn" onclick="checkIQ(this, false)">Deep Learning is a subset of Statistics</button>
+              <button class="iq-btn" onclick="checkIQ(this, false)">AI and ML are the same thing</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="lesson-actions">
+          <button class="btn-complete" id="completeBtn" onclick="completeLesson()">
+            ✅ Mark as Complete & Earn XP
+          </button>
+          <button class="btn-next" onclick="loadLesson('ml-types')">
+            Next Lesson → Types of ML
+          </button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script src="js/learn.js"></script>
+</body>
+</html>

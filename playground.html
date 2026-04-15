@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Code Playground – NeuroLearn</title>
+  <meta name="description" content="Write, run, and experiment with ML pseudocode in the browser. Interactive Python-like code editor for AI and ML concepts." />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/playground.css" />
+  <!-- Skulpt: Python interpreter for in-browser code execution -->
+  <script src="https://cdn.skulpt.org/skulpt.min.js" type="text/javascript"></script>
+  <script src="https://cdn.skulpt.org/skulpt-stdlib.js" type="text/javascript"></script>
+</head>
+<body>
+  <div class="bg-canvas"></div>
+  <div class="noise-overlay"></div>
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <div class="logo-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="13" stroke="url(#lg1)" stroke-width="2"/><circle cx="14" cy="14" r="4" fill="url(#lg1)"/><path d="M14 1v6M14 21v6M1 14h6M21 14h6" stroke="url(#lg1)" stroke-width="2" stroke-linecap="round"/><circle cx="6" cy="6" r="2" fill="url(#lg2)"/><circle cx="22" cy="6" r="2" fill="url(#lg2)"/><circle cx="6" cy="22" r="2" fill="url(#lg2)"/><circle cx="22" cy="22" r="2" fill="url(#lg2)"/><defs><linearGradient id="lg1" x1="0" y1="0" x2="28" y2="28" gradientUnits="userSpaceOnUse"><stop stop-color="#a78bfa"/><stop offset="1" stop-color="#38bdf8"/></linearGradient><linearGradient id="lg2" x1="0" y1="0" x2="28" y2="28" gradientUnits="userSpaceOnUse"><stop stop-color="#f472b6"/><stop offset="1" stop-color="#a78bfa"/></linearGradient></defs></svg></div>
+        <span class="logo-text">Neuro<span class="logo-accent">Learn</span></span>
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html" class="nav-link" id="nav-home">Home</a>
+        <a href="learn.html" class="nav-link" id="nav-learn">Learn</a>
+        <a href="playground.html" class="nav-link active" id="nav-playground">Playground</a>
+        <a href="games.html" class="nav-link" id="nav-games">Mini Games</a>
+        <a href="quiz.html" class="nav-link" id="nav-quiz">Quizzes</a>
+        <a href="simulate.html" class="nav-link" id="nav-simulate">Simulate</a>
+      </div>
+      <div class="nav-actions">
+        <div class="xp-badge" id="xpBadge"><span class="xp-icon">⚡</span><span id="xpCount">0 XP</span></div>
+        <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="pg-layout">
+    <!-- Sidebar: Code Templates -->
+    <aside class="pg-sidebar">
+      <div class="pgs-header">
+        <h3>💾 Code Templates</h3>
+      </div>
+      <div class="pgs-templates" id="templateList">
+        <div class="template-item active" onclick="loadTemplate('linear-regression')" id="tpl-linear-regression">
+          <div class="ti-icon">📈</div>
+          <div class="ti-info">
+            <span class="ti-name">Linear Regression</span>
+            <span class="ti-tag">Supervised</span>
+          </div>
+        </div>
+        <div class="template-item" onclick="loadTemplate('knn')" id="tpl-knn">
+          <div class="ti-icon">🔵</div>
+          <div class="ti-info">
+            <span class="ti-name">K-Nearest Neighbors</span>
+            <span class="ti-tag">Classification</span>
+          </div>
+        </div>
+        <div class="template-item" onclick="loadTemplate('kmeans')" id="tpl-kmeans">
+          <div class="ti-icon">🎯</div>
+          <div class="ti-info">
+            <span class="ti-name">K-Means Clustering</span>
+            <span class="ti-tag">Unsupervised</span>
+          </div>
+        </div>
+        <div class="template-item" onclick="loadTemplate('neural-net')" id="tpl-neural-net">
+          <div class="ti-icon">🧠</div>
+          <div class="ti-info">
+            <span class="ti-name">Neural Network</span>
+            <span class="ti-tag">Deep Learning</span>
+          </div>
+        </div>
+        <div class="template-item" onclick="loadTemplate('decision-tree')" id="tpl-decision-tree">
+          <div class="ti-icon">🌳</div>
+          <div class="ti-info">
+            <span class="ti-name">Decision Tree</span>
+            <span class="ti-tag">Tree Model</span>
+          </div>
+        </div>
+        <div class="template-item" onclick="loadTemplate('gradient-descent')" id="tpl-gradient-descent">
+          <div class="ti-icon">⛰️</div>
+          <div class="ti-info">
+            <span class="ti-name">Gradient Descent</span>
+            <span class="ti-tag">Optimization</span>
+          </div>
+        </div>
+        <div class="template-item" onclick="loadTemplate('naive-bayes')" id="tpl-naive-bayes">
+          <div class="ti-icon">🎲</div>
+          <div class="ti-info">
+            <span class="ti-name">Naive Bayes</span>
+            <span class="ti-tag">Probability</span>
+          </div>
+        </div>
+        <div class="template-item" onclick="loadTemplate('perceptron')" id="tpl-perceptron">
+          <div class="ti-icon">⚡</div>
+          <div class="ti-info">
+            <span class="ti-name">Perceptron</span>
+            <span class="ti-tag">Neural Unit</span>
+          </div>
+        </div>
+      </div>
+      <!-- Free Code Mode -->
+      <div class="pgs-divider">── or ──</div>
+      <div class="template-item free-code-item" onclick="loadFreeCode()" id="tpl-free">
+        <div class="ti-icon">✏️</div>
+        <div class="ti-info">
+          <span class="ti-name">Free Code</span>
+          <span class="ti-tag" style="background:rgba(52,211,153,0.2);color:#34d399">Live Execute</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Editor -->
+    <main class="pg-main">
+      <!-- Toolbar -->
+      <div class="pg-toolbar">
+        <div class="pgt-left">
+          <span class="pgt-filename" id="pgtFilename">📄 linear_regression.py</span>
+          <div class="pgt-info">
+            <span class="pgt-lang" id="pgtLang">🎨 Simulated Mode</span>
+          </div>
+        </div>
+        <div class="pgt-right">
+          <button class="pgt-btn pgt-clear" onclick="clearOutput()" title="Clear output">🗑 Clear</button>
+          <button class="pgt-btn pgt-reset" onclick="resetCode()" title="Reset to template">↺ Reset</button>
+          <!-- Run Mode Toggle -->
+          <div class="run-mode-toggle" title="Switch execution mode">
+            <button class="rmt-btn active" id="btnSimulated" onclick="setRunMode('simulated')">🎨 Simulated</button>
+            <button class="rmt-btn" id="btnExecute" onclick="setRunMode('execute')">⚡ Execute</button>
+          </div>
+          <button class="pgt-btn pgt-run" onclick="runCode()" id="runBtn">
+            <span id="runBtnLabel">▶ Run</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Editor + Output Split -->
+      <div class="pg-editor-area">
+        <!-- Code Editor -->
+        <div class="pg-editor-wrap">
+          <div class="pge-header">
+            <span>📝 Editor</span>
+            <div class="pge-info">
+              <span class="line-count" id="lineCount">Lines: 1</span>
+            </div>
+          </div>
+          <div class="editor-container">
+            <div class="line-numbers" id="lineNumbers">1</div>
+            <textarea id="codeEditor" class="code-editor" spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off"></textarea>
+          </div>
+        </div>
+
+        <!-- Output Panel -->
+        <div class="pg-output-wrap">
+          <div class="pge-header">
+            <span>📤 Output</span>
+            <div class="output-status" id="outputStatus">
+              <span class="status-dot" id="statusDot"></span>
+              <span id="statusText">Ready</span>
+            </div>
+          </div>
+          <div class="output-area" id="outputArea">
+            <div class="output-placeholder">
+              <span style="font-size:2rem;">▶</span>
+              <p>Press <strong>Run</strong> or <kbd>Ctrl+Enter</kbd> to execute.</p>
+              <p style="font-size:0.82rem;opacity:0.6;">🎨 <strong>Simulated</strong> — rich ML visualizations from templates<br>⚡ <strong>Execute</strong> — run real Python code via Skulpt interpreter</p>
+            </div>
+          </div>
+          <!-- Visualization Canvas -->
+          <div class="viz-area" id="vizArea" style="display:none">
+            <div class="pge-header">📊 Visualization</div>
+            <canvas id="vizCanvas" width="600" height="280"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Concepts Panel -->
+      <div class="concepts-panel" id="conceptsPanel">
+        <div class="cp-title">💡 Concept Spotlight</div>
+        <div class="cp-content" id="cpContent">
+          Select a code template to learn about the concept it demonstrates.
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script src="js/playground.js"></script>
+  <script>
+    // Ensure Skulpt is ready after load
+    window.addEventListener('load', () => {
+      if (typeof Sk !== 'undefined') {
+        console.log('✅ Skulpt Python interpreter loaded');
+      } else {
+        console.warn('⚠ Skulpt not loaded — Execute mode will show error. Check internet connection.');
+      }
+    });
+  </script>
+</body>
+</html>
