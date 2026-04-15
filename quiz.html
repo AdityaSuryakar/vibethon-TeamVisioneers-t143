@@ -10,6 +10,8 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap"
     rel="stylesheet" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" />
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/quiz.css" />
 </head>
@@ -147,6 +149,19 @@
             <span class="qtc-xp">⚡ 500 XP</span>
           </div>
         </div>
+
+        <div class="quiz-topic-card quiz-topic-card--code" onclick="startQuiz('code')" id="qt-code">
+          <div class="qtc-icon">💻</div>
+          <div class="qtc-info">
+            <h3>Logic &amp; Code</h3>
+            <p>Trace Python/ML code snippets, predict outputs, and fix bugs in real AI code</p>
+          </div>
+          <div class="qtc-meta">
+            <span class="tag tag-cyan">Code Challenges</span>
+            <span class="qtc-count">10 Questions</span>
+            <span class="qtc-xp">⚡ 500 XP</span>
+          </div>
+        </div>
       </div>
 
       <!-- High Scores -->
@@ -179,6 +194,14 @@
       <div class="qa-question-wrap">
         <div class="qa-category" id="qaCategory">🌱 Foundations</div>
         <h2 class="qa-question" id="qaQuestion">Loading question...</h2>
+        <!-- Code snippet block (shown only for code questions) -->
+        <div class="qa-code-block" id="qaCodeBlock" style="display:none">
+          <div class="qa-code-header">
+            <span class="qa-code-lang" id="qaCodeLang">python</span>
+            <span class="qa-code-label">📋 What does this code output / do?</span>
+          </div>
+          <pre><code class="language-python" id="qaCodeSnippet"></code></pre>
+        </div>
         <div class="qa-options" id="qaOptions"><!-- Options render here --></div>
         <div class="qa-explanation" id="qaExplanation" style="display:none">
           <div class="qe-content">
@@ -187,6 +210,10 @@
               <p class="qe-title" id="qeTitle">Correct!</p>
               <p class="qe-text" id="qeText">Explanation here</p>
             </div>
+          </div>
+          <!-- Explanation code block (shown if answer has code) -->
+          <div class="qa-exp-code" id="qaExpCode" style="display:none">
+            <pre><code class="language-python" id="qaExpCodeSnippet"></code></pre>
           </div>
           <button class="btn-next-q" id="nextQBtn" onclick="nextQuestion()">Next Question →</button>
         </div>
@@ -226,6 +253,7 @@
     </div>
   </div>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
   <script src="js/main.js"></script>
   <script src="js/quiz.js"></script>
   <script src="js/chatbot.js"></script>
