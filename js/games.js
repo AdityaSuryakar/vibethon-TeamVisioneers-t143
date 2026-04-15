@@ -12,12 +12,12 @@ function launchGame(gameId) {
   document.body.style.overflow = 'hidden';
 
   const gameConfigs = {
-    'gradient-descent': { title: '⛰️ Gradient Descent Game', render: renderGradientDescent },
-    'data-sorter':      { title: '🗂️ Data Sorter',          render: renderDataSorter },
-    'neuron-builder':   { title: '🧠 Neuron Builder',        render: renderNeuronBuilder },
-    'kmeans':           { title: '🎯 K-Means Adventure',     render: renderKMeans },
-    'bias-buster':      { title: '⚖️ Bias Buster',           render: renderBiasBuster },
-    'perceptron':       { title: '⚡ Perceptron Trainer',    render: renderPerceptron },
+    'gradient-descent':         { title: '⛰️ Gradient Descent Game',     render: renderGradientDescent },
+    'decision-tree':            { title: '🌳 Decision Tree Explorer',    render: renderDecisionTree },
+    'neuron-builder':           { title: '🧠 Neuron Builder',             render: renderNeuronBuilder },
+    'kmeans':                   { title: '🎯 K-Means Adventure',          render: renderKMeans },
+    'classification-challenge': { title: '🏷️ Classification Challenge',  render: renderClassificationChallenge },
+    'perceptron':               { title: '⚡ Perceptron Trainer',         render: renderPerceptron },
   };
 
   const cfg = gameConfigs[gameId];
@@ -220,122 +220,146 @@ function renderGradientDescent(container) {
 }
 
 // ============================================
-// GAME 2: DATA SORTER
+// GAME 2: DECISION TREE EXPLORER
 // ============================================
-function renderDataSorter(container) {
-  const dataItems = [
-    { text: '🌸 Petal length: 5.1cm', label: 'flower' },
-    { text: '📧 "WIN A PRIZE NOW"', label: 'spam' },
-    { text: '🏠 3 beds, 2 baths', label: 'house' },
-    { text: '📧 "Meeting at 3pm"', label: 'not-spam' },
-    { text: '🌸 Petal width: 1.8cm', label: 'flower' },
-    { text: '🏠 Downtown loft', label: 'house' },
-    { text: '📧 "Free money!!!"', label: 'spam' },
-    { text: '🌸 Sepal: 4.9cm', label: 'flower' },
-    { text: '📧 "Project deadline"', label: 'not-spam' },
-    { text: '🏠 Garden view', label: 'house' },
+function renderDecisionTree(container) {
+  // Dataset: fruit classification by color & size
+  const dataset = [
+    { color: 'red',    size: 'large',  sweetness: 'high', label: '🍎 Apple' },
+    { color: 'red',    size: 'small',  sweetness: 'high', label: '🍒 Cherry' },
+    { color: 'yellow', size: 'large',  sweetness: 'high', label: '🍌 Banana' },
+    { color: 'yellow', size: 'small',  sweetness: 'low',  label: '🍋 Lemon' },
+    { color: 'green',  size: 'large',  sweetness: 'low',  label: '🍈 Melon' },
+    { color: 'green',  size: 'small',  sweetness: 'low',  label: '🥝 Kiwi' },
+    { color: 'purple', size: 'small',  sweetness: 'high', label: '🍇 Grape' },
+    { color: 'orange', size: 'large',  sweetness: 'high', label: '🍊 Orange' },
   ];
 
-  let score = 0, total = 0, timeLeft = 45;
-  let shuffled = [...dataItems].sort(() => Math.random() - 0.5).slice(0, 8);
-
-  container.innerHTML = `
-    <div class="ds-game">
-      <div class="ds-header">
-        <p style="color:var(--text-secondary);font-size:0.88rem;">Click on a data item, then click the correct bucket to classify it. Race the clock!</p>
-        <div class="ds-score-wrap">
-          <div class="ds-score"><span class="ds-score-val" id="dsScore" style="color:var(--green)">0</span><span class="ds-score-label">Score</span></div>
-          <div class="ds-score"><span class="ds-score-val" id="dsTimer" style="color:var(--orange)">45s</span><span class="ds-score-label">Time</span></div>
-          <div class="ds-score"><span class="ds-score-val" id="dsAccuracy" style="color:var(--blue)">—%</span><span class="ds-score-label">Accuracy</span></div>
-        </div>
-      </div>
-      <div class="ds-timer-bar"><div class="ds-timer-fill" id="dsTimerFill" style="width:100%"></div></div>
-      <div class="ds-arena">
-        <div class="ds-queue" id="dsQueue"><h4>📥 Data Queue (click to select)</h4></div>
-        <div class="ds-center-arrow">→</div>
-        <div class="ds-buckets" id="dsBuckets">
-          <div class="ds-bucket" id="bucket-spam" data-bucket="spam" onclick="dsDropToBucket('spam')">
-            <h4 style="color:#f87171">🚫 Spam</h4>
-          </div>
-          <div class="ds-bucket" id="bucket-not-spam" data-bucket="not-spam" onclick="dsDropToBucket('not-spam')">
-            <h4 style="color:var(--green)">✉️ Legitimate</h4>
-          </div>
-          <div class="ds-bucket" id="bucket-flower" data-bucket="flower" onclick="dsDropToBucket('flower')">
-            <h4 style="color:var(--pink)">🌸 Iris Flower</h4>
-          </div>
-          <div class="ds-bucket" id="bucket-house" data-bucket="house" onclick="dsDropToBucket('house')">
-            <h4 style="color:var(--blue)">🏠 Real Estate</h4>
-          </div>
-        </div>
-      </div>
-    </div>
-  `;
-
-  let selected = null;
-
-  function renderQueue() {
-    const q = document.getElementById('dsQueue');
-    q.innerHTML = '<h4>📥 Data Queue (click to select)</h4>';
-    shuffled.forEach((item, i) => {
-      const el = document.createElement('div');
-      el.className = 'ds-item';
-      el.textContent = item.text;
-      el.dataset.idx = i;
-      el.addEventListener('click', () => {
-        document.querySelectorAll('.ds-item').forEach(e => e.style.borderColor = '');
-        selected = i;
-        el.style.borderColor = 'var(--purple)';
-        el.style.background = 'rgba(167,139,250,0.15)';
-      });
-      q.appendChild(el);
-    });
-  }
-
-  window.dsDropToBucket = function(bucketId) {
-    if (selected === null) { showToast('👆 Select a data item first!', 'info'); return; }
-    const item = shuffled[selected];
-    const correct = item.label === bucketId;
-    total++;
-    if (correct) {
-      score++;
-      showToast('✅ Correct classification! +10 pts', 'success');
-      addXP(10);
-    } else {
-      showToast(`❌ Wrong! It was "${item.label}"`, 'error');
-    }
-
-    shuffled.splice(selected, 1);
-    selected = null;
-    document.getElementById('dsScore').textContent = score;
-    document.getElementById('dsAccuracy').textContent = `${Math.round((score / total) * 100)}%`;
-
-    if (shuffled.length === 0) {
-      clearInterval(window._gameTimerId);
-      addXP(score * 10);
-      showToast(`🎉 Round complete! Score: ${score}/${total} +${score * 10} XP`, 'success');
-      setTimeout(() => { shuffled = [...dataItems].sort(() => Math.random() - 0.5).slice(0, 8); renderQueue(); }, 1000);
-    } else {
-      renderQueue();
+  // Decision tree structure with multiple levels
+  const treeRoot = {
+    question: 'What color is the fruit?',
+    feature: 'color',
+    children: {
+      'red':    { question: 'What size is it?', feature: 'size', children: { 'large': { leaf: '🍎 Apple' }, 'small': { leaf: '🍒 Cherry' } } },
+      'yellow': { question: 'What size is it?', feature: 'size', children: { 'large': { leaf: '🍌 Banana' }, 'small': { leaf: '🍋 Lemon' } } },
+      'green':  { question: 'What size is it?', feature: 'size', children: { 'large': { leaf: '🍈 Melon' }, 'small': { leaf: '🥝 Kiwi' } } },
+      'purple': { leaf: '🍇 Grape' },
+      'orange': { leaf: '🍊 Orange' },
     }
   };
 
-  renderQueue();
+  let score = 0, total = 0;
+  let currentFruit = null;
+  let currentNode = null;
+  let path = [];
 
-  // Timer
-  window._gameTimerId = setInterval(() => {
-    timeLeft--;
-    const pct = (timeLeft / 45) * 100;
-    document.getElementById('dsTimer').textContent = `${timeLeft}s`;
-    document.getElementById('dsTimerFill').style.width = `${pct}%`;
-    document.getElementById('dsTimerFill').style.background = timeLeft < 10 ? '#f87171' : 'var(--gradient-main)';
-    if (timeLeft <= 0) {
-      clearInterval(window._gameTimerId);
-      const xpEarned = score * 15;
-      addXP(xpEarned);
-      showToast(`⏱ Time's up! Final score: ${score}/${total} +${xpEarned} XP`, 'info');
-      document.getElementById('dsTimer').textContent = '0s';
+  function pickFruit() {
+    currentFruit = dataset[Math.floor(Math.random() * dataset.length)];
+    currentNode = treeRoot;
+    path = [];
+    renderStep();
+  }
+
+  function renderStep() {
+    const gameDiv = document.getElementById('dtGame');
+    if (!gameDiv) return;
+
+    const isLeaf = currentNode.leaf !== undefined;
+    const pathHTML = path.map((p, i) => `
+      <div class="dt-path-step" style="animation-delay:${i * 0.08}s">
+        <span class="dt-path-q">${p.q}</span>
+        <span class="dt-path-a">→ <strong style="color:var(--blue)">${p.a}</strong></span>
+      </div>`).join('');
+
+    if (isLeaf) {
+      const correct = currentNode.leaf === currentFruit.label;
+      total++;
+      if (correct) { score++; addXP(15); }
+      gameDiv.innerHTML = `
+        <div class="dt-path">${pathHTML}</div>
+        <div class="dt-result" style="background:${correct ? 'rgba(52,211,153,0.12)' : 'rgba(248,113,113,0.12)'}; border:1px solid ${correct ? 'rgba(52,211,153,0.4)' : 'rgba(248,113,113,0.4)'}; border-radius:16px; padding:20px; text-align:center; margin-top:16px;">
+          <div style="font-size:3rem; margin-bottom:8px;">${correct ? '🎉' : '❌'}</div>
+          <p style="font-size:1.1rem; font-weight:700; color:${correct ? 'var(--green)' : '#f87171'};">${correct ? 'Correct!' : 'Wrong!'}</p>
+          <p style="color:var(--text-secondary); font-size:0.9rem;">The fruit was: <strong style="color:var(--text-primary);">${currentFruit.label}</strong></p>
+          <p style="color:var(--text-secondary); font-size:0.9rem;">Tree predicted: <strong style="color:${correct ? 'var(--green)' : '#f87171'};">${currentNode.leaf}</strong></p>
+          <p style="color:var(--purple); font-size:0.85rem; margin-top:8px;">Score: ${score}/${total} &nbsp;|&nbsp; Accuracy: ${total > 0 ? Math.round(score/total*100) : 0}%</p>
+        </div>
+        <div style="display:flex; gap:12px; margin-top:16px; justify-content:center;">
+          <button class="gd-btn gd-btn-main" onclick="dtNext()">▶ Next Fruit</button>
+        </div>`;
+      document.getElementById('dtScore').textContent = score;
+      document.getElementById('dtAcc').textContent = `${Math.round(score/total*100)}%`;
+      if (correct) showToast('🌳 Correct! Tree predicted right! +15 XP', 'success');
+      else showToast('❌ Wrong branch! Study the tree rules.', 'error');
+    } else {
+      const opts = Object.keys(currentNode.children);
+      const btns = opts.map(opt => `
+        <button class="dt-option-btn" onclick="dtChoose('${opt}')">${opt}</button>`).join('');
+      gameDiv.innerHTML = `
+        <div class="dt-fruit-card">
+          <div class="dt-emoji">${currentFruit.label.split(' ')[0]}</div>
+          <div class="dt-fruit-attrs">
+            <span class="dt-attr">Color: <strong style="color:var(--blue)">${currentFruit.color}</strong></span>
+            <span class="dt-attr">Size: <strong style="color:var(--pink)">${currentFruit.size}</strong></span>
+            <span class="dt-attr">Sweetness: <strong style="color:var(--yellow)">${currentFruit.sweetness}</strong></span>
+          </div>
+        </div>
+        <div class="dt-path" style="margin:12px 0;">${pathHTML}</div>
+        <div class="dt-question-box">
+          <div class="dt-q-badge">🌿 Decision Node</div>
+          <p class="dt-question">${currentNode.question}</p>
+          <div class="dt-options">${btns}</div>
+        </div>`;
     }
-  }, 1000);
+  }
+
+  window.dtChoose = function(value) {
+    path.push({ q: currentNode.question, a: value });
+    currentNode = currentNode.children[value];
+    if (!currentNode) {
+      showToast('🤔 No branch for that value, picking again!', 'info');
+      pickFruit(); return;
+    }
+    renderStep();
+  };
+
+  window.dtNext = function() { pickFruit(); };
+
+  // Also draw a static tree visualization on canvas
+  container.innerHTML = `
+    <div class="gd-game" style="gap:16px;">
+      <p style="color:var(--text-secondary);font-size:0.88rem;">A mystery fruit appears! Follow the <strong style="color:var(--purple)">decision tree</strong> rules by answering each question. Choose the right branches to classify it correctly!</p>
+      <div style="display:flex; gap:16px; align-items:center; flex-wrap:wrap;">
+        <div class="gd-stat"><div class="gd-stat-val" id="dtScore" style="color:var(--green)">0</div><div class="gd-stat-label">Correct</div></div>
+        <div class="gd-stat"><div class="gd-stat-val" id="dtAcc" style="color:var(--blue)">—%</div><div class="gd-stat-label">Accuracy</div></div>
+      </div>
+      <div id="dtGame" style="min-height:200px;"></div>
+    </div>`;
+
+  // Inject styles for DT game
+  if (!document.getElementById('dtStyles')) {
+    const s = document.createElement('style');
+    s.id = 'dtStyles';
+    s.textContent = `
+      .dt-fruit-card { display:flex; align-items:center; gap:20px; padding:16px 20px; background:var(--bg-card); border:1px solid var(--border); border-radius:16px; margin-bottom:12px; }
+      .dt-emoji { font-size:3.5rem; }
+      .dt-fruit-attrs { display:flex; flex-wrap:wrap; gap:10px; }
+      .dt-attr { padding:6px 14px; background:rgba(255,255,255,0.06); border-radius:20px; font-size:0.85rem; color:var(--text-secondary); }
+      .dt-question-box { background:rgba(167,139,250,0.08); border:1px solid rgba(167,139,250,0.25); border-radius:16px; padding:20px; }
+      .dt-q-badge { display:inline-block; padding:4px 12px; background:rgba(167,139,250,0.2); border-radius:20px; font-size:0.78rem; color:var(--purple); font-weight:600; margin-bottom:10px; }
+      .dt-question { font-size:1.15rem; font-weight:700; margin-bottom:14px; }
+      .dt-options { display:flex; flex-wrap:wrap; gap:10px; }
+      .dt-option-btn { padding:10px 20px; border:1.5px solid var(--border); border-radius:12px; background:var(--bg-card); color:var(--text-primary); font-family:var(--font-main); font-size:0.9rem; cursor:pointer; transition:all 0.2s; text-transform:capitalize; }
+      .dt-option-btn:hover { border-color:var(--purple); background:rgba(167,139,250,0.15); transform:translateY(-2px); }
+      .dt-path { display:flex; flex-direction:column; gap:6px; }
+      .dt-path-step { display:flex; gap:10px; align-items:center; font-size:0.85rem; padding:6px 12px; background:rgba(56,189,248,0.07); border-radius:8px; border-left:3px solid var(--blue); animation:fadeSlideIn 0.3s ease both; }
+      .dt-path-q { color:var(--text-secondary); }
+      @keyframes fadeSlideIn { from { opacity:0; transform:translateX(-10px); } to { opacity:1; transform:none; } }
+    `;
+    document.head.appendChild(s);
+  }
+
+  pickFruit();
 }
 
 // ============================================
@@ -603,52 +627,213 @@ function renderKMeans(container) {
 }
 
 // ============================================
-// GAME 5: BIAS BUSTER
+// GAME 5: CLASSIFICATION CHALLENGE
 // ============================================
-function renderBiasBuster(container) {
-  const scenarios = [
-    { title: 'Hiring Algorithm Training Data', data: [{role:'Engineer', gender:'Male', hired:true},{role:'Engineer', gender:'Male', hired:true},{role:'Engineer', gender:'Male', hired:true},{role:'Engineer', gender:'Female', hired:false},{role:'Manager', gender:'Male', hired:true},{role:'Manager', gender:'Female', hired:false}], issue: 'Gender bias — 83% of training data is male engineers', fix: 'Balance dataset: include equal representation of all genders' },
-    { title: 'Medical Diagnosis Model', data: [{age:'<30',condition:'Healthy',diagnosed:false},{age:'30-50',condition:'Healthy',diagnosed:false},{age:'>50',condition:'Healthy',diagnosed:true},{age:'>50',condition:'Sick',diagnosed:true},{age:'<30',condition:'Sick',diagnosed:false}], issue: 'Age bias — older patients always diagnosed regardless of actual condition', fix: 'Remove correlated age features or rebalance with diverse age groups' },
-    { title: 'Facial Recognition Training', data: [{skin:'Light',recognized:true},{skin:'Light',recognized:true},{skin:'Light',recognized:true},{skin:'Light',recognized:true},{skin:'Dark',recognized:false},{skin:'Medium',recognized:false}], issue: 'Racial bias — 67% of training data is light-skinned', fix: 'Collect diverse training data with equal representation across skin tones' },
+function renderClassificationChallenge(container) {
+  // Levels: each defines a dataset and asks the user to place a threshold on one axis
+  const levels = [
+    {
+      name: 'Email Spam Filter',
+      desc: 'Drag the threshold line to separate Spam (🔴) from Legitimate (🔵) emails by keyword score.',
+      points: [
+        ...Array.from({length:14}, () => ({ x: Math.random()*38+2,  label: 0 })),  // legit: low score
+        ...Array.from({length:14}, () => ({ x: Math.random()*38+60, label: 1 })),  // spam: high score
+      ],
+      xLabel: 'Keyword Score',
+      defaultThreshold: 50,
+      xMin: 0, xMax: 100,
+    },
+    {
+      name: 'Tumour Size Detector',
+      desc: 'Set the threshold on tumour size to separate Benign (🔵) from Malignant (🔴) cases.',
+      points: [
+        ...Array.from({length:12}, () => ({ x: Math.random()*18+2,  label: 0 })),
+        ...Array.from({length:12}, () => ({ x: Math.random()*18+22, label: 1 })),
+      ],
+      xLabel: 'Tumour Size (mm)',
+      defaultThreshold: 20,
+      xMin: 0, xMax: 45,
+    },
+    {
+      name: 'Credit Risk Scorer',
+      desc: 'Divide Low-Risk (🔵) from High-Risk (🔴) applicants by their credit score.',
+      points: [
+        ...Array.from({length:15}, () => ({ x: Math.random()*150+550, label: 0 })),
+        ...Array.from({length:15}, () => ({ x: Math.random()*150+300, label: 1 })),
+      ],
+      xLabel: 'Credit Score',
+      defaultThreshold: 500,
+      xMin: 250, xMax: 750,
+    },
   ];
 
-  let current = 0;
-  const s = scenarios[current];
+  let lvlIdx = 0;
+  let threshold, isDragging = false;
 
-  container.innerHTML = `
-    <div style="display:flex;flex-direction:column;gap:24px;">
-      <p style="color:var(--text-secondary);font-size:0.88rem;">Analyze the dataset below. Can you identify the bias? Select your diagnosis and propose a fix!</p>
-      <div style="padding:20px;background:var(--bg-card);border:1px solid var(--border);border-radius:16px;">
-        <h3 style="margin-bottom:16px;font-size:1.1rem;">${s.title}</h3>
-        <div style="overflow-x:auto;">
-          <table style="width:100%;border-collapse:collapse;font-size:0.85rem;font-family:var(--font-code);">
-            <thead><tr>${Object.keys(s.data[0]).map(k => `<th style="padding:10px 14px;text-align:left;border-bottom:1px solid var(--border);color:var(--text-muted);font-size:0.78rem;text-transform:uppercase;letter-spacing:0.05em">${k}</th>`).join('')}</tr></thead>
-            <tbody>${s.data.map(row => `<tr>${Object.values(row).map(v => `<td style="padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.04);color:${v===true?'var(--green)':v===false?'#f87171':'var(--text-secondary)'}">${v===true?'✓ Yes':v===false?'✗ No':v}</td>`).join('')}</tr>`).join('')}</tbody>
-          </table>
-        </div>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:10px;">
-        <p style="font-weight:700;font-size:0.95rem;">What type of bias do you see? 🔍</p>
-        <div style="display:flex;flex-direction:column;gap:8px;" id="biasOptions">
-          <button class="iq-btn" onclick="checkBias(this, false)">📊 Measurement Bias (incorrect labels)</button>
-          <button class="iq-btn" onclick="checkBias(this, true)">👥 Representation Bias (unequal groups)</button>
-          <button class="iq-btn" onclick="checkBias(this, false)">⚙️ Algorithm Bias (wrong model choice)</button>
-          <button class="iq-btn" onclick="checkBias(this, false)">🔗 Aggregation Bias (grouping issues)</button>
-        </div>
-      </div>
-      <div id="biasResult" style="display:none;padding:20px;background:rgba(52,211,153,0.1);border:1px solid rgba(52,211,153,0.3);border-radius:12px;">
-        <p style="color:var(--green);font-weight:700;margin-bottom:8px;">✅ Bias Identified!</p>
-        <p style="color:var(--text-secondary);font-size:0.88rem;margin-bottom:6px;"><strong style="color:var(--text-primary)">Issue:</strong> ${s.issue}</p>
-        <p style="color:var(--text-secondary);font-size:0.88rem;"><strong style="color:var(--text-primary)">Fix:</strong> ${s.fix}</p>
-      </div>
-    </div>
-  `;
+  function startLevel(idx) {
+    lvlIdx = idx;
+    const lvl = levels[idx];
+    threshold = lvl.defaultThreshold;
+    renderLevel();
+  }
 
-  window.checkBias = function(btn, correct) {
-    document.querySelectorAll('#biasOptions .iq-btn').forEach(b => b.disabled = true);
-    if (correct) { btn.classList.add('correct'); document.getElementById('biasResult').style.display = 'block'; addXP(120); showToast('⚖️ Bias detected! +120 XP', 'success'); }
-    else { btn.classList.add('wrong'); showToast('❌ Not quite! Try another answer.', 'error'); }
-  };
+  function renderLevel() {
+    const lvl = levels[lvlIdx];
+    container.innerHTML = `
+      <div class="gd-game">
+        <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+          <h3 style="font-size:1rem;color:var(--purple);">Level ${lvlIdx+1}/${levels.length}: ${lvl.name}</h3>
+          <span style="color:var(--text-muted);font-size:0.85rem;">${lvl.desc}</span>
+        </div>
+        <div class="gd-canvas-wrap"><canvas id="ccCanvas" width="840" height="200"></canvas></div>
+        <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin-top:4px;">
+          <span style="color:var(--text-secondary);font-size:0.85rem;">🖱️ Drag the <strong style="color:#fbbf24;">yellow line</strong> to set threshold</span>
+          <div class="gd-stat" style="min-width:80px;"><div class="gd-stat-val" id="ccF1" style="color:var(--green);">—</div><div class="gd-stat-label">F1-Score</div></div>
+          <div class="gd-stat" style="min-width:80px;"><div class="gd-stat-val" id="ccAcc" style="color:var(--blue);">—%</div><div class="gd-stat-label">Accuracy</div></div>
+          <div class="gd-stat" style="min-width:80px;"><div class="gd-stat-val" id="ccTP" style="color:#34d399;">—</div><div class="gd-stat-label">True Pos</div></div>
+          <div class="gd-stat" style="min-width:80px;"><div class="gd-stat-val" id="ccFP" style="color:#f87171;">—</div><div class="gd-stat-label">False Pos</div></div>
+        </div>
+        <div style="display:flex;gap:12px;margin-top:4px;">
+          <button class="gd-btn gd-btn-main" id="ccSubmitBtn" onclick="ccSubmit()">✅ Lock In Threshold</button>
+          ${lvlIdx > 0 ? '<button class="gd-btn gd-btn-reset" onclick="ccPrev()">← Prev</button>' : ''}
+        </div>
+      </div>`;
+
+    const canvas = document.getElementById('ccCanvas');
+    const ctx = canvas.getContext('2d');
+    const W = canvas.width, H = canvas.height;
+    const { xMin, xMax, xLabel } = lvl;
+
+    const toCanvasX = x => ((x - xMin) / (xMax - xMin)) * (W - 80) + 40;
+    const fromCanvasX = cx => ((cx - 40) / (W - 80)) * (xMax - xMin) + xMin;
+
+    function computeMetrics(thresh) {
+      let tp=0, fp=0, tn=0, fn=0;
+      lvl.points.forEach(p => {
+        const pred = p.x >= thresh ? 1 : 0;
+        if (pred===1 && p.label===1) tp++;
+        else if (pred===1 && p.label===0) fp++;
+        else if (pred===0 && p.label===0) tn++;
+        else fn++;
+      });
+      const precision = tp+fp > 0 ? tp/(tp+fp) : 0;
+      const recall    = tp+fn > 0 ? tp/(tp+fn) : 0;
+      const f1 = precision+recall > 0 ? 2*precision*recall/(precision+recall) : 0;
+      const acc = (tp+tn)/lvl.points.length;
+      return { tp, fp, tn, fn, f1, acc };
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, W, H);
+      const bg = ctx.createLinearGradient(0,0,0,H);
+      bg.addColorStop(0,'rgba(10,15,46,0.95)'); bg.addColorStop(1,'rgba(5,7,20,1)');
+      ctx.fillStyle = bg; ctx.fillRect(0,0,W,H);
+
+      // Axis
+      ctx.strokeStyle = 'rgba(148,163,184,0.3)'; ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(40, H-30); ctx.lineTo(W-40, H-30); ctx.stroke();
+      ctx.fillStyle='rgba(148,163,184,0.6)'; ctx.font='11px Outfit,sans-serif'; ctx.textAlign='center';
+      ctx.fillText(xLabel, W/2, H-5);
+
+      // Shade regions
+      const tx = toCanvasX(threshold);
+      ctx.fillStyle='rgba(56,189,248,0.07)'; ctx.fillRect(40, 20, tx-40, H-50);
+      ctx.fillStyle='rgba(248,113,113,0.07)'; ctx.fillRect(tx, 20, W-40-tx, H-50);
+
+      // Points
+      lvl.points.forEach(p => {
+        const cx = toCanvasX(p.x);
+        const cy = 30 + Math.random() * (H - 80); // jitter vertically
+        const color = p.label===0 ? '#38bdf8' : '#f87171';
+        ctx.beginPath(); ctx.arc(cx, cy, 7, 0, Math.PI*2);
+        ctx.fillStyle = color+'cc'; ctx.fill();
+        ctx.strokeStyle = color; ctx.lineWidth=1.5; ctx.stroke();
+      });
+
+      // Threshold line
+      const gline = ctx.createLinearGradient(tx, 20, tx, H-30);
+      gline.addColorStop(0,'rgba(251,191,36,0.9)'); gline.addColorStop(1,'rgba(251,191,36,0.4)');
+      ctx.beginPath(); ctx.moveTo(tx, 20); ctx.lineTo(tx, H-30);
+      ctx.strokeStyle=gline; ctx.lineWidth=3; ctx.stroke();
+      // Drag handle
+      ctx.beginPath(); ctx.arc(tx, H-30, 10, 0, Math.PI*2);
+      ctx.fillStyle='#fbbf24'; ctx.fill();
+      ctx.strokeStyle='white'; ctx.lineWidth=2; ctx.stroke();
+      // Threshold label
+      ctx.fillStyle='#fbbf24'; ctx.font='bold 12px Outfit,sans-serif'; ctx.textAlign='center';
+      ctx.fillText(threshold.toFixed(1), tx, 14);
+
+      // Update metrics
+      const m = computeMetrics(threshold);
+      const f1El=document.getElementById('ccF1'), accEl=document.getElementById('ccAcc'),
+            tpEl=document.getElementById('ccTP'),  fpEl=document.getElementById('ccFP');
+      if(f1El) f1El.textContent = m.f1.toFixed(2);
+      if(accEl) accEl.textContent = `${Math.round(m.acc*100)}%`;
+      if(tpEl) tpEl.textContent = m.tp;
+      if(fpEl) fpEl.textContent = m.fp;
+    }
+
+    // store points with stable y positions (not re-random on draw)
+    lvl.points.forEach(p => { if(p.cy===undefined) p.cy = 30 + Math.random()*(H-80); });
+    function drawStable() {
+      ctx.clearRect(0, 0, W, H);
+      const bg2 = ctx.createLinearGradient(0,0,0,H);
+      bg2.addColorStop(0,'rgba(10,15,46,0.95)'); bg2.addColorStop(1,'rgba(5,7,20,1)');
+      ctx.fillStyle=bg2; ctx.fillRect(0,0,W,H);
+      ctx.strokeStyle='rgba(148,163,184,0.3)'; ctx.lineWidth=1;
+      ctx.beginPath(); ctx.moveTo(40,H-30); ctx.lineTo(W-40,H-30); ctx.stroke();
+      ctx.fillStyle='rgba(148,163,184,0.6)'; ctx.font='11px Outfit,sans-serif'; ctx.textAlign='center';
+      ctx.fillText(lvl.xLabel, W/2, H-5);
+      const tx2 = toCanvasX(threshold);
+      ctx.fillStyle='rgba(56,189,248,0.07)'; ctx.fillRect(40,20,tx2-40,H-50);
+      ctx.fillStyle='rgba(248,113,113,0.07)'; ctx.fillRect(tx2,20,W-40-tx2,H-50);
+      lvl.points.forEach(p=>{
+        const cx=toCanvasX(p.x); const color=p.label===0?'#38bdf8':'#f87171';
+        ctx.beginPath(); ctx.arc(cx,p.cy,7,0,Math.PI*2);
+        ctx.fillStyle=color+'cc'; ctx.fill(); ctx.strokeStyle=color; ctx.lineWidth=1.5; ctx.stroke();
+      });
+      const gl=ctx.createLinearGradient(tx2,20,tx2,H-30);
+      gl.addColorStop(0,'rgba(251,191,36,0.9)'); gl.addColorStop(1,'rgba(251,191,36,0.4)');
+      ctx.beginPath(); ctx.moveTo(tx2,20); ctx.lineTo(tx2,H-30); ctx.strokeStyle=gl; ctx.lineWidth=3; ctx.stroke();
+      ctx.beginPath(); ctx.arc(tx2,H-30,10,0,Math.PI*2); ctx.fillStyle='#fbbf24'; ctx.fill(); ctx.strokeStyle='white'; ctx.lineWidth=2; ctx.stroke();
+      ctx.fillStyle='#fbbf24'; ctx.font='bold 12px Outfit,sans-serif'; ctx.textAlign='center'; ctx.fillText(threshold.toFixed(1),tx2,14);
+      const m=computeMetrics(threshold);
+      const f1E=document.getElementById('ccF1'),aE=document.getElementById('ccAcc'),tE=document.getElementById('ccTP'),fE=document.getElementById('ccFP');
+      if(f1E)f1E.textContent=m.f1.toFixed(2); if(aE)aE.textContent=`${Math.round(m.acc*100)}%`; if(tE)tE.textContent=m.tp; if(fE)fE.textContent=m.fp;
+    }
+
+    canvas.addEventListener('mousedown', (e)=>{ const r=canvas.getBoundingClientRect(); const cx=(e.clientX-r.left)*(W/r.width); const tx3=toCanvasX(threshold); if(Math.abs(cx-tx3)<18) isDragging=true; });
+    canvas.addEventListener('mousemove', (e)=>{ if(!isDragging) return; const r=canvas.getBoundingClientRect(); threshold=Math.max(lvl.xMin, Math.min(lvl.xMax, fromCanvasX((e.clientX-r.left)*(W/r.width)))); drawStable(); });
+    canvas.addEventListener('mouseup', ()=>{ isDragging=false; });
+    canvas.addEventListener('mouseleave', ()=>{ isDragging=false; });
+    // Touch support
+    canvas.addEventListener('touchstart', (e)=>{ const r=canvas.getBoundingClientRect(); const cx=(e.touches[0].clientX-r.left)*(W/r.width); if(Math.abs(cx-toCanvasX(threshold))<24) isDragging=true; e.preventDefault(); }, {passive:false});
+    canvas.addEventListener('touchmove', (e)=>{ if(!isDragging) return; const r=canvas.getBoundingClientRect(); threshold=Math.max(lvl.xMin,Math.min(lvl.xMax,fromCanvasX((e.touches[0].clientX-r.left)*(W/r.width)))); drawStable(); e.preventDefault(); }, {passive:false});
+    canvas.addEventListener('touchend', ()=>{ isDragging=false; });
+
+    window.ccSubmit = function() {
+      const m = computeMetrics(threshold);
+      const xpEarned = Math.round(m.f1 * 140);
+      addXP(xpEarned);
+      if (m.f1 >= 0.85) {
+        showToast(`🏆 Excellent! F1=${m.f1.toFixed(2)} +${xpEarned} XP`, 'success');
+      } else if (m.f1 >= 0.6) {
+        showToast(`✅ Good job! F1=${m.f1.toFixed(2)} +${xpEarned} XP. Try to beat 0.85!`, 'info');
+      } else {
+        showToast(`🔧 F1=${m.f1.toFixed(2)}. Adjust the threshold more carefully!`, 'error');
+      }
+      if (lvlIdx < levels.length - 1) {
+        setTimeout(() => startLevel(lvlIdx + 1), 1500);
+      } else {
+        setTimeout(() => { showToast('🎉 All levels complete! +50 bonus XP', 'success'); addXP(50); }, 1600);
+      }
+    };
+    window.ccPrev = function() { startLevel(lvlIdx - 1); };
+
+    drawStable();
+  }
+
+  startLevel(0);
 }
 
 // ============================================

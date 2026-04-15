@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NeuroLearn – All-in-One AIML Learning Platform</title>
-  <meta name="description" content="Learn AI & Machine Learning interactively with courses, coding labs, mini-games, quizzes, and real-world simulations. Make AIML fun!" />
+  <meta name="description"
+    content="Learn AI & Machine Learning interactively with courses, coding labs, mini-games, quizzes, and real-world simulations. Make AIML fun!" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap"
+    rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
+
 <body>
   <!-- Animated Background -->
   <div class="bg-canvas" id="bgCanvas"></div>
@@ -21,21 +26,21 @@
       <a href="index.html" class="nav-logo">
         <div class="logo-icon">
           <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-            <circle cx="14" cy="14" r="13" stroke="url(#lg1)" stroke-width="2"/>
-            <circle cx="14" cy="14" r="4" fill="url(#lg1)"/>
-            <path d="M14 1v6M14 21v6M1 14h6M21 14h6" stroke="url(#lg1)" stroke-width="2" stroke-linecap="round"/>
-            <circle cx="6" cy="6" r="2" fill="url(#lg2)"/>
-            <circle cx="22" cy="6" r="2" fill="url(#lg2)"/>
-            <circle cx="6" cy="22" r="2" fill="url(#lg2)"/>
-            <circle cx="22" cy="22" r="2" fill="url(#lg2)"/>
+            <circle cx="14" cy="14" r="13" stroke="url(#lg1)" stroke-width="2" />
+            <circle cx="14" cy="14" r="4" fill="url(#lg1)" />
+            <path d="M14 1v6M14 21v6M1 14h6M21 14h6" stroke="url(#lg1)" stroke-width="2" stroke-linecap="round" />
+            <circle cx="6" cy="6" r="2" fill="url(#lg2)" />
+            <circle cx="22" cy="6" r="2" fill="url(#lg2)" />
+            <circle cx="6" cy="22" r="2" fill="url(#lg2)" />
+            <circle cx="22" cy="22" r="2" fill="url(#lg2)" />
             <defs>
               <linearGradient id="lg1" x1="0" y1="0" x2="28" y2="28" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#a78bfa"/>
-                <stop offset="1" stop-color="#38bdf8"/>
+                <stop stop-color="#a78bfa" />
+                <stop offset="1" stop-color="#38bdf8" />
               </linearGradient>
               <linearGradient id="lg2" x1="0" y1="0" x2="28" y2="28" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#f472b6"/>
-                <stop offset="1" stop-color="#a78bfa"/>
+                <stop stop-color="#f472b6" />
+                <stop offset="1" stop-color="#a78bfa" />
               </linearGradient>
             </defs>
           </svg>
@@ -56,7 +61,8 @@
           <span id="xpCount">0 XP</span>
         </div>
         <!-- Auth UI injected by main.js into .nav-actions -->
-        <button class="btn-primary" id="startLearningBtn" onclick="window.location.href='learn.html'">Start Learning</button>
+        <button class="btn-primary" id="startLearningBtn" onclick="window.location.href='learn.html'">Start
+          Learning</button>
         <button class="hamburger" id="hamburger" aria-label="Toggle menu">
           <span></span><span></span><span></span>
         </button>
@@ -72,18 +78,21 @@
         🚀 Hackathon Edition — TeamVisioneers T143
       </div>
       <h1 class="hero-title">
-        Master <span class="gradient-text">AI & ML</span><br/>
+        Master <span class="gradient-text">AI & ML</span><br />
         The Fun Way
       </h1>
       <p class="hero-subtitle">
-        Learn Artificial Intelligence & Machine Learning through interactive lessons, 
-        hands-on coding labs, mini-games, and real-world simulations. 
+        Learn Artificial Intelligence & Machine Learning through interactive lessons,
+        hands-on coding labs, mini-games, and real-world simulations.
         Complex concepts made <em>simple, engaging, and enjoyable.</em>
       </p>
       <div class="hero-actions">
         <a href="learn.html" class="btn-hero-primary">
           <span>Start Your Journey</span>
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10h12M10 4l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M4 10h12M10 4l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
         </a>
         <a href="games.html" class="btn-hero-secondary">
           <span>🎮 Play & Learn</span>
@@ -138,7 +147,7 @@
   <section class="features-section" id="features">
     <div class="section-header">
       <span class="section-tag">What We Offer</span>
-      <h2 class="section-title">Everything You Need to<br/><span class="gradient-text">Master AIML</span></h2>
+      <h2 class="section-title">Everything You Need to<br /><span class="gradient-text">Master AIML</span></h2>
     </div>
     <div class="features-grid">
       <a href="learn.html" class="feature-card" id="feat-learn">
@@ -206,17 +215,23 @@
         <div class="progress-mini">
           <div class="prog-bar-wrap">
             <span>AI Basics</span>
-            <div class="prog-bar"><div class="prog-fill" style="width: 75%"></div></div>
+            <div class="prog-bar">
+              <div class="prog-fill" style="width: 75%"></div>
+            </div>
             <span>75%</span>
           </div>
           <div class="prog-bar-wrap">
             <span>ML Models</span>
-            <div class="prog-bar"><div class="prog-fill" style="width: 45%; --fill-color: #38bdf8;"></div></div>
+            <div class="prog-bar">
+              <div class="prog-fill" style="width: 45%; --fill-color: #38bdf8;"></div>
+            </div>
             <span>45%</span>
           </div>
           <div class="prog-bar-wrap">
             <span>Deep Learning</span>
-            <div class="prog-bar"><div class="prog-fill" style="width: 20%; --fill-color: #f472b6;"></div></div>
+            <div class="prog-bar">
+              <div class="prog-fill" style="width: 20%; --fill-color: #f472b6;"></div>
+            </div>
             <span>20%</span>
           </div>
         </div>
@@ -389,7 +404,8 @@
           <button class="lb-refresh" onclick="renderLeaderboard()">↺ Refresh</button>
         </div>
         <div id="leaderboardList">
-          <div style="padding:24px;text-align:center;color:var(--text-muted);font-size:0.88rem">Loading leaderboard...</div>
+          <div style="padding:24px;text-align:center;color:var(--text-muted);font-size:0.88rem">Loading leaderboard...
+          </div>
         </div>
         <div class="lb-login-prompt" id="lbLoginPrompt" style="display:none">
           <p>🔐 <strong>Login to appear on the leaderboard!</strong></p>
@@ -399,7 +415,8 @@
       <!-- Badges Showcase -->
       <div class="badge-showcase">
         <h3>🎖️ Badges &amp; Achievements</h3>
-        <p style="font-size:0.82rem;color:var(--text-muted);margin-bottom:16px">Earn XP to unlock badges. Login to save progress!</p>
+        <p style="font-size:0.82rem;color:var(--text-muted);margin-bottom:16px">Earn XP to unlock badges. Login to save
+          progress!</p>
         <div class="bs-grid" id="badgeGrid">Loading...</div>
         <div class="bs-xp-info" id="bsXpInfo" style="margin-top:16px"></div>
       </div>
@@ -445,4 +462,5 @@
   <script src="js/main.js"></script>
   <script src="js/home.js"></script>
 </body>
+
 </html>
