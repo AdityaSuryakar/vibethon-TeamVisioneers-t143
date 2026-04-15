@@ -61,6 +61,90 @@ const QUIZ_BANK = {
     { q: "What is data augmentation in computer vision?", opts: ["Adding more GPU memory", "Artificially expanding the training dataset by applying transformations like flips, rotations, and color jitter", "Increasing image resolution", "Reducing the model size"], ans: 1, exp: "Data augmentation applies random transformations (flip, rotate, crop, brightness changes) to training images, artificially increasing dataset size and variety — improving model robustness and reducing overfitting." },
     { q: "What dataset is most commonly used to benchmark image classification models?", opts: ["MNIST", "CIFAR-10", "ImageNet", "COCO"], ans: 2, exp: "ImageNet (ILSVRC) with 1.2 million images across 1000 classes is the standard benchmark for image classification. The competition sparked the deep learning revolution when AlexNet won in 2012." },
   ],
+  code: [
+    {
+      q: "What does this Python code print?",
+      code: `import numpy as np\narr = np.array([1, 2, 3, 4, 5])\nprint(arr[arr > 2])`,
+      opts: ["[1 2]", "[3 4 5]", "[2 3 4 5]", "Error"],
+      ans: 1,
+      exp: "NumPy boolean indexing: `arr > 2` creates a boolean mask [F,F,T,T,T]. Applying it selects elements where True → [3 4 5]."
+    },
+    {
+      q: "What is the output of this code?",
+      code: `x = [1, 2, 3]\nresult = list(map(lambda n: n ** 2, x))\nprint(result)`,
+      opts: ["[1, 4, 9]", "[2, 4, 6]", "[1, 2, 3]", "<map object>"],
+      ans: 0,
+      exp: "`map()` applies the lambda `n**2` to each element. `list()` collects results → [1, 4, 9]."
+    },
+    {
+      q: "What does this sklearn code output for `X_scaled.mean(axis=0)`?",
+      code: `from sklearn.preprocessing import StandardScaler\nX = [[1, 2], [3, 4], [5, 6]]\nscaler = StandardScaler()\nX_scaled = scaler.fit_transform(X)\nprint(X_scaled.mean(axis=0))`,
+      opts: ["[1. 2.]", "[0. 0.]", "[3. 4.]", "[0.5 0.5]"],
+      ans: 1,
+      exp: "StandardScaler transforms data to zero mean and unit variance. After scaling, the column means are always [0. 0.] (up to floating point precision)."
+    },
+    {
+      q: "What does this function compute?",
+      code: `def mystery(y_true, y_pred):\n    return sum((yt - yp)**2 for yt, yp in zip(y_true, y_pred)) / len(y_true)\n\nprint(mystery([3, -0.5, 2], [2.5, 0, 2]))`,
+      opts: ["MAE", "RMSE", "MSE (Mean Squared Error)", "R² Score"],
+      ans: 2,
+      exp: "The formula Σ(y_true − y_pred)² / n is exactly Mean Squared Error (MSE). Result = (0.25 + 0.25 + 0) / 3 ≈ 0.167."
+    },
+    {
+      q: "What is the bug in this PyTorch training loop?",
+      code: `model = nn.Linear(10, 1)\noptimizer = torch.optim.SGD(model.parameters(), lr=0.01)\n\nfor epoch in range(100):\n    output = model(X)\n    loss = criterion(output, y)\n    loss.backward()\n    optimizer.step()  # ← something is missing above`,
+      opts: [
+        "Wrong learning rate value",
+        "optimizer.zero_grad() is missing before loss.backward()",
+        "model.train() was not called",
+        "loss.backward() should not be called in a loop"
+      ],
+      ans: 1,
+      exp: "In PyTorch, gradients accumulate by default. `optimizer.zero_grad()` must be called before `loss.backward()` each iteration, otherwise gradients from previous steps add up and corrupt weight updates.",
+      expCode: `for epoch in range(100):\n    optimizer.zero_grad()  # ✅ Clear old gradients FIRST\n    output = model(X)\n    loss = criterion(output, y)\n    loss.backward()\n    optimizer.step()`
+    },
+    {
+      q: "What does this Python list comprehension produce?",
+      code: `matrix = [[1,2,3],[4,5,6],[7,8,9]]\nflat = [x for row in matrix for x in row if x % 2 == 0]\nprint(flat)`,
+      opts: ["[2, 4, 6, 8]", "[1, 3, 5, 7, 9]", "[[2],[4,6],[8]]", "[2, 6]"],
+      ans: 0,
+      exp: "The nested comprehension iterates every element and keeps only even numbers (x % 2 == 0). Even elements of [1..9] are [2, 4, 6, 8]."
+    },
+    {
+      q: "What does this Pandas snippet return?",
+      code: `import pandas as pd\ndf = pd.DataFrame({'score': [85, 92, 78, 95, 88]})\nprint(df[df['score'] > 90]['score'].mean())`,
+      opts: ["88.0", "90.0", "93.5", "92.0"],
+      ans: 2,
+      exp: "Filter rows where score > 90 → [92, 95]. Mean = (92 + 95) / 2 = 93.5."
+    },
+    {
+      q: "What will this ReLU implementation output?",
+      code: `def relu(x):\n    return max(0, x)\n\nvals = [-3, 0, 2, -1, 5]\nprint([relu(v) for v in vals])`,
+      opts: ["[-3, 0, 2, -1, 5]", "[0, 0, 2, 0, 5]", "[3, 0, 2, 1, 5]", "[0, 2, 5]"],
+      ans: 1,
+      exp: "ReLU = max(0, x): negatives become 0, non-negatives stay. -3→0, 0→0, 2→2, -1→0, 5→5 → [0, 0, 2, 0, 5]."
+    },
+    {
+      q: "What will sigmoid(0) return?",
+      code: `import math\n\ndef sigmoid(x):\n    return 1 / (1 + math.exp(-x))\n\nprint(round(sigmoid(0), 4))`,
+      opts: ["0.0", "1.0", "0.5", "0.7311"],
+      ans: 2,
+      exp: "sigmoid(0) = 1 / (1 + e^0) = 1 / (1 + 1) = 0.5. The sigmoid function always returns 0.5 for input 0."
+    },
+    {
+      q: "What is the data leakage bug in this cross-validation code?",
+      code: `from sklearn.preprocessing import StandardScaler\nfrom sklearn.model_selection import KFold\nimport numpy as np\n\nX = np.random.randn(100, 5)\nscaler = StandardScaler()\nX_scaled = scaler.fit_transform(X)  # ← Bug here\n\nkf = KFold(n_splits=5)\nfor train_i, val_i in kf.split(X_scaled):\n    X_train, X_val = X_scaled[train_i], X_scaled[val_i]`,
+      opts: [
+        "KFold n_splits should be 10, not 5",
+        "Data leakage: scaler is fitted on full X before the splits",
+        "StandardScaler is not compatible with KFold",
+        "X_train and X_val should not be sliced this way"
+      ],
+      ans: 1,
+      exp: "Data leakage: fitting StandardScaler on ALL data (including validation sets) before splitting means val-set statistics contaminate training. The scaler must be fit only on X_train inside each fold.",
+      expCode: `for train_i, val_i in kf.split(X):\n    X_train, X_val = X[train_i], X[val_i]\n    scaler = StandardScaler()\n    X_train = scaler.fit_transform(X_train)  # ✅ fit on train only\n    X_val   = scaler.transform(X_val)        # ✅ transform val`
+    },
+  ],
 };
 
 // Mixed bank (random from all topics)
@@ -103,7 +187,7 @@ function loadHighScores() {
   const entries = Object.entries(scores);
   if (entries.length === 0) return;
 
-  const topicNames = { foundations: '🌱 AI Foundations', ml: '⚙️ Machine Learning', dl: '🧠 Deep Learning', nlp: '💬 NLP', cv: '👁️ Computer Vision', mixed: '🎲 Mixed' };
+  const topicNames = { foundations: '🌱 AI Foundations', ml: '⚙️ Machine Learning', dl: '🧠 Deep Learning', nlp: '💬 NLP', cv: '👁️ Computer Vision', mixed: '🎲 Mixed', code: '💻 Logic & Code' };
   scoreList.innerHTML = entries.map(([topic, data]) => `
     <div class="score-row">
       <span class="sr-topic">${topicNames[topic] || topic}</span>
@@ -142,7 +226,7 @@ function renderQuestion() {
   document.getElementById('qaProgressFill').style.width = `${(current / total) * 100}%`;
 
   // Category
-  const catMap = { foundations: '🌱 Foundations', ml: '⚙️ Machine Learning', dl: '🧠 Deep Learning', nlp: '💬 NLP', cv: '👁️ Computer Vision', mixed: '🎲 Mixed' };
+  const catMap = { foundations: '🌱 Foundations', ml: '⚙️ Machine Learning', dl: '🧠 Deep Learning', nlp: '💬 NLP', cv: '👁️ Computer Vision', mixed: '🎲 Mixed', code: '💻 Logic & Code' };
   document.getElementById('qaCategory').textContent = catMap[quizState.topic] || '';
 
   // Question
@@ -161,6 +245,22 @@ function renderQuestion() {
   // Explanation hidden
   const exp = document.getElementById('qaExplanation');
   exp.style.display = 'none';
+  document.getElementById('qaExpCode').style.display = 'none';
+
+  // Code block (only for code-type questions)
+  const codeBlock = document.getElementById('qaCodeBlock');
+  if (q.code) {
+    codeBlock.style.display = 'block';
+    const codeEl = document.getElementById('qaCodeSnippet');
+    codeEl.textContent = q.code;
+    // Re-highlight
+    if (typeof hljs !== 'undefined') {
+      delete codeEl.dataset.highlighted;
+      hljs.highlightElement(codeEl);
+    }
+  } else {
+    codeBlock.style.display = 'none';
+  }
 
   // Timer
   clearInterval(quizState.timerInterval);
@@ -224,6 +324,20 @@ function selectAnswer(selectedIdx) {
   document.getElementById('qeTitle').style.color = correct ? 'var(--green)' : '#f87171';
   document.getElementById('qeText').textContent = q.exp;
 
+  // Show explanation code if present
+  const expCodeDiv = document.getElementById('qaExpCode');
+  const expCodeEl = document.getElementById('qaExpCodeSnippet');
+  if (q.expCode) {
+    expCodeDiv.style.display = 'block';
+    expCodeEl.textContent = q.expCode;
+    if (typeof hljs !== 'undefined') {
+      delete expCodeEl.dataset.highlighted;
+      hljs.highlightElement(expCodeEl);
+    }
+  } else {
+    expCodeDiv.style.display = 'none';
+  }
+
   const isLast = quizState.current >= quizState.questions.length - 1;
   document.getElementById('nextQBtn').textContent = isLast ? 'View Results 🏆' : 'Next Question →';
 }
@@ -245,7 +359,7 @@ function showResults() {
   const total = quizState.questions.length;
   const acc = Math.round((score / total) * 100);
   const timeTaken = Math.round((Date.now() - quizState.startTime) / 1000);
-  const xpMap = { foundations: 200, ml: 300, dl: 400, nlp: 400, cv: 400, mixed: 500 };
+  const xpMap = { foundations: 200, ml: 300, dl: 400, nlp: 400, cv: 400, mixed: 500, code: 500 };
   const baseXP = xpMap[quizState.topic] || 200;
   const xpEarned = Math.round((score / total) * baseXP);
 
