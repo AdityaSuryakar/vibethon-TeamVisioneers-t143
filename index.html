@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NeuroLearn – All-in-One AIML Learning Platform</title>
+  <meta name="description" content="Learn AI & Machine Learning interactively with courses, coding labs, mini-games, quizzes, and real-world simulations. Make AIML fun!" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- Animated Background -->
+  <div class="bg-canvas" id="bgCanvas"></div>
+  <div class="noise-overlay"></div>
+
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <div class="logo-icon">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <circle cx="14" cy="14" r="13" stroke="url(#lg1)" stroke-width="2"/>
+            <circle cx="14" cy="14" r="4" fill="url(#lg1)"/>
+            <path d="M14 1v6M14 21v6M1 14h6M21 14h6" stroke="url(#lg1)" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="6" cy="6" r="2" fill="url(#lg2)"/>
+            <circle cx="22" cy="6" r="2" fill="url(#lg2)"/>
+            <circle cx="6" cy="22" r="2" fill="url(#lg2)"/>
+            <circle cx="22" cy="22" r="2" fill="url(#lg2)"/>
+            <defs>
+              <linearGradient id="lg1" x1="0" y1="0" x2="28" y2="28" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#a78bfa"/>
+                <stop offset="1" stop-color="#38bdf8"/>
+              </linearGradient>
+              <linearGradient id="lg2" x1="0" y1="0" x2="28" y2="28" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#f472b6"/>
+                <stop offset="1" stop-color="#a78bfa"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <span class="logo-text">Neuro<span class="logo-accent">Learn</span></span>
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html" class="nav-link active" id="nav-home">Home</a>
+        <a href="learn.html" class="nav-link" id="nav-learn">Learn</a>
+        <a href="playground.html" class="nav-link" id="nav-playground">Playground</a>
+        <a href="games.html" class="nav-link" id="nav-games">Mini Games</a>
+        <a href="quiz.html" class="nav-link" id="nav-quiz">Quizzes</a>
+        <a href="simulate.html" class="nav-link" id="nav-simulate">Simulate</a>
+      </div>
+      <div class="nav-actions">
+        <div class="xp-badge" id="xpBadge">
+          <span class="xp-icon">⚡</span>
+          <span id="xpCount">0 XP</span>
+        </div>
+        <!-- Auth UI injected by main.js into .nav-actions -->
+        <button class="btn-primary" id="startLearningBtn" onclick="window.location.href='learn.html'">Start Learning</button>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        🚀 Hackathon Edition — TeamVisioneers T143
+      </div>
+      <h1 class="hero-title">
+        Master <span class="gradient-text">AI & ML</span><br/>
+        The Fun Way
+      </h1>
+      <p class="hero-subtitle">
+        Learn Artificial Intelligence & Machine Learning through interactive lessons, 
+        hands-on coding labs, mini-games, and real-world simulations. 
+        Complex concepts made <em>simple, engaging, and enjoyable.</em>
+      </p>
+      <div class="hero-actions">
+        <a href="learn.html" class="btn-hero-primary">
+          <span>Start Your Journey</span>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10h12M10 4l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="games.html" class="btn-hero-secondary">
+          <span>🎮 Play & Learn</span>
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <span class="stat-num" data-target="50">0</span><span>+</span>
+          <span class="stat-label">Lessons</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-num" data-target="12">0</span><span>+</span>
+          <span class="stat-label">Mini Games</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-num" data-target="200">0</span><span>+</span>
+          <span class="stat-label">Quiz Questions</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-num" data-target="8">0</span><span>+</span>
+          <span class="stat-label">Simulations</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="neural-viz" id="neuralViz"></div>
+      <div class="floating-cards">
+        <div class="float-card fc1">
+          <div class="fc-icon">🧠</div>
+          <div class="fc-text">Neural Networks</div>
+        </div>
+        <div class="float-card fc2">
+          <div class="fc-icon">📊</div>
+          <div class="fc-text">Data Science</div>
+        </div>
+        <div class="float-card fc3">
+          <div class="fc-icon">🤖</div>
+          <div class="fc-text">Deep Learning</div>
+        </div>
+        <div class="float-card fc4">
+          <div class="fc-icon">🎯</div>
+          <div class="fc-text">Reinforcement RL</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features-section" id="features">
+    <div class="section-header">
+      <span class="section-tag">What We Offer</span>
+      <h2 class="section-title">Everything You Need to<br/><span class="gradient-text">Master AIML</span></h2>
+    </div>
+    <div class="features-grid">
+      <a href="learn.html" class="feature-card" id="feat-learn">
+        <div class="feature-icon-wrap" style="--icon-color: #a78bfa;">
+          <span class="feature-icon">📚</span>
+        </div>
+        <h3>Structured Learning</h3>
+        <p>Curated learning paths from AI fundamentals to advanced deep learning with step-by-step guides.</p>
+        <div class="feature-tags">
+          <span>Beginner</span><span>Intermediate</span><span>Advanced</span>
+        </div>
+        <div class="feature-arrow">→</div>
+      </a>
+      <a href="playground.html" class="feature-card" id="feat-playground">
+        <div class="feature-icon-wrap" style="--icon-color: #38bdf8;">
+          <span class="feature-icon">💻</span>
+        </div>
+        <h3>Code Playground</h3>
+        <p>Write, run, and experiment with Python-like AI/ML pseudocode directly in your browser.</p>
+        <div class="feature-tags">
+          <span>Python</span><span>Interactive</span><span>Real-time</span>
+        </div>
+        <div class="feature-arrow">→</div>
+      </a>
+      <a href="games.html" class="feature-card highlight-card" id="feat-games">
+        <div class="feature-icon-wrap" style="--icon-color: #f472b6;">
+          <span class="feature-icon">🎮</span>
+        </div>
+        <h3>Mini Games</h3>
+        <p>Learn ML concepts through fun games — train neural networks, classify data, optimize algorithms!</p>
+        <div class="feature-tags">
+          <span>Gamified</span><span>Interactive</span><span>Fun</span>
+        </div>
+        <div class="feature-arrow">→</div>
+        <div class="new-badge">HOT 🔥</div>
+      </a>
+      <a href="quiz.html" class="feature-card" id="feat-quiz">
+        <div class="feature-icon-wrap" style="--icon-color: #34d399;">
+          <span class="feature-icon">🎯</span>
+        </div>
+        <h3>Smart Quizzes</h3>
+        <p>Test your knowledge with adaptive quizzes that adjust to your level and track your progress.</p>
+        <div class="feature-tags">
+          <span>Adaptive</span><span>Scored</span><span>Progress</span>
+        </div>
+        <div class="feature-arrow">→</div>
+      </a>
+      <a href="simulate.html" class="feature-card" id="feat-simulate">
+        <div class="feature-icon-wrap" style="--icon-color: #fb923c;">
+          <span class="feature-icon">🔬</span>
+        </div>
+        <h3>Real-world Simulations</h3>
+        <p>Experience AI solving real problems — image recognition, spam detection, stock prediction & more.</p>
+        <div class="feature-tags">
+          <span>Real-world</span><span>Simulation</span><span>Applied</span>
+        </div>
+        <div class="feature-arrow">→</div>
+      </a>
+      <div class="feature-card progress-card" id="feat-progress">
+        <div class="feature-icon-wrap" style="--icon-color: #fbbf24;">
+          <span class="feature-icon">📈</span>
+        </div>
+        <h3>Progress Tracking</h3>
+        <p>Your XP, badges, streaks, and learning milestones tracked in real-time.</p>
+        <div class="progress-mini">
+          <div class="prog-bar-wrap">
+            <span>AI Basics</span>
+            <div class="prog-bar"><div class="prog-fill" style="width: 75%"></div></div>
+            <span>75%</span>
+          </div>
+          <div class="prog-bar-wrap">
+            <span>ML Models</span>
+            <div class="prog-bar"><div class="prog-fill" style="width: 45%; --fill-color: #38bdf8;"></div></div>
+            <span>45%</span>
+          </div>
+          <div class="prog-bar-wrap">
+            <span>Deep Learning</span>
+            <div class="prog-bar"><div class="prog-fill" style="width: 20%; --fill-color: #f472b6;"></div></div>
+            <span>20%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Learning Paths Section -->
+  <section class="paths-section">
+    <div class="section-header">
+      <span class="section-tag">Learning Paths</span>
+      <h2 class="section-title">Choose Your <span class="gradient-text">Learning Track</span></h2>
+    </div>
+    <div class="paths-grid">
+      <div class="path-card" onclick="window.location.href='learn.html?track=beginner'">
+        <div class="path-level beginner">Beginner</div>
+        <div class="path-icon">🌱</div>
+        <h3>AI Foundations</h3>
+        <p>Start from scratch. Learn what AI is, how it works, and the math behind it.</p>
+        <ul class="path-topics">
+          <li>What is AI & ML?</li>
+          <li>Types of Machine Learning</li>
+          <li>Math for ML (Linear Algebra, Stats)</li>
+          <li>Python for AI</li>
+        </ul>
+        <div class="path-meta">
+          <span>⏱ 4 hours</span>
+          <span>📖 12 lessons</span>
+        </div>
+        <button class="path-btn">Start Track →</button>
+      </div>
+      <div class="path-card featured-path" onclick="window.location.href='learn.html?track=intermediate'">
+        <div class="path-best">Most Popular</div>
+        <div class="path-level intermediate">Intermediate</div>
+        <div class="path-icon">⚡</div>
+        <h3>ML Engineering</h3>
+        <p>Dive deep into ML algorithms, model training, and evaluation techniques.</p>
+        <ul class="path-topics">
+          <li>Supervised & Unsupervised Learning</li>
+          <li>Decision Trees, SVM, KNN</li>
+          <li>Neural Networks Basics</li>
+          <li>Model Evaluation & Tuning</li>
+        </ul>
+        <div class="path-meta">
+          <span>⏱ 8 hours</span>
+          <span>📖 20 lessons</span>
+        </div>
+        <button class="path-btn">Start Track →</button>
+      </div>
+      <div class="path-card" onclick="window.location.href='learn.html?track=advanced'">
+        <div class="path-level advanced">Advanced</div>
+        <div class="path-icon">🚀</div>
+        <h3>Deep Learning & AI</h3>
+        <p>Master CNNs, RNNs, Transformers, and modern AI architectures.</p>
+        <ul class="path-topics">
+          <li>Convolutional Neural Networks</li>
+          <li>Recurrent Networks & LSTM</li>
+          <li>Transformers & Attention</li>
+          <li>Generative AI & LLMs</li>
+        </ul>
+        <div class="path-meta">
+          <span>⏱ 12 hours</span>
+          <span>📖 18 lessons</span>
+        </div>
+        <button class="path-btn">Start Track →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mini Games Preview -->
+  <section class="games-preview-section">
+    <div class="section-header">
+      <span class="section-tag">🎮 Mini Games</span>
+      <h2 class="section-title">Learn by <span class="gradient-text">Playing</span></h2>
+      <p class="section-desc">Our unique gamified approach makes learning AIML concepts intuitive and fun!</p>
+    </div>
+    <div class="games-preview-grid">
+      <div class="game-preview-card" onclick="window.location.href='games.html#neuron-builder'">
+        <div class="gp-icon">🧠</div>
+        <h4>Neuron Builder</h4>
+        <p>Build neural networks by connecting neurons and watch predictions happen in real time</p>
+        <div class="gp-tags"><span>Neural Networks</span></div>
+      </div>
+      <div class="game-preview-card" onclick="window.location.href='games.html#data-sorter'">
+        <div class="gp-icon">🗂️</div>
+        <h4>Data Sorter</h4>
+        <p>Classify data points into categories — experience what classifiers do!</p>
+        <div class="gp-tags"><span>Classification</span></div>
+      </div>
+      <div class="game-preview-card" onclick="window.location.href='games.html#gradient-descent'">
+        <div class="gp-icon">⛰️</div>
+        <h4>Gradient Descent</h4>
+        <p>Guide a ball down a loss landscape to find the minimum — visualize optimization!</p>
+        <div class="gp-tags"><span>Optimization</span></div>
+      </div>
+      <div class="game-preview-card" onclick="window.location.href='games.html#bias-buster'">
+        <div class="gp-icon">⚖️</div>
+        <h4>Bias Buster</h4>
+        <p>Identify and fix biased datasets to train fair AI models</p>
+        <div class="gp-tags"><span>AI Ethics</span></div>
+      </div>
+    </div>
+    <div class="section-cta">
+      <a href="games.html" class="btn-primary btn-large">Explore All Games 🎮</a>
+    </div>
+  </section>
+
+  <!-- Progress Dashboard Preview -->
+  <section class="dashboard-section" id="dashboard">
+    <div class="dash-content">
+      <div class="section-header" style="text-align:left; align-items:flex-start;">
+        <span class="section-tag">Your Progress</span>
+        <h2 class="section-title">Track Every <span class="gradient-text">Achievement</span></h2>
+        <p class="section-desc">Earn XP, unlock badges, and see your learning streak grow!</p>
+      </div>
+      <div class="dash-actions">
+        <a href="learn.html" class="btn-primary">Continue Learning →</a>
+      </div>
+    </div>
+    <div class="dash-widget">
+      <div class="widget-header">
+        <span>📊 Learning Dashboard</span>
+        <span class="widget-tag">Live</span>
+      </div>
+      <div class="widget-stats">
+        <div class="ws-item">
+          <div class="ws-circle" style="--pct: 65%;">
+            <span>65%</span>
+          </div>
+          <span>Overall Progress</span>
+        </div>
+        <div class="ws-badges">
+          <div class="badge-item earned">🏆 AI Pioneer</div>
+          <div class="badge-item earned">⚡ Quick Learner</div>
+          <div class="badge-item earned">🧠 Neuro Master</div>
+          <div class="badge-item">🔥 7-Day Streak</div>
+          <div class="badge-item">🎯 Quiz Champion</div>
+          <div class="badge-item">🤖 Bot Builder</div>
+        </div>
+      </div>
+      <div class="streak-bar">
+        <span>🔥 Learning Streak</span>
+        <div class="streak-days">
+          <div class="sd active">M</div>
+          <div class="sd active">T</div>
+          <div class="sd active">W</div>
+          <div class="sd active">T</div>
+          <div class="sd active">F</div>
+          <div class="sd">S</div>
+          <div class="sd">S</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       LEADERBOARD & BADGES SECTION (Req 3.8)
+       ============================================ -->
+  <section class="leaderboard-section" id="leaderboard" style="position:relative;z-index:1;">
+    <div class="section-header">
+      <span class="section-tag">🏆 Leaderboard</span>
+      <h2 class="section-title">Top <span class="gradient-text">Learners</span></h2>
+      <p class="section-desc">See how you rank — earn XP through lessons, quizzes, and games to climb the board!</p>
+    </div>
+    <div class="lb-container">
+      <!-- Rankings List -->
+      <div class="lb-list-wrap">
+        <div class="lb-list-header">
+          <h3>🌍 Global Rankings</h3>
+          <button class="lb-refresh" onclick="renderLeaderboard()">↺ Refresh</button>
+        </div>
+        <div id="leaderboardList">
+          <div style="padding:24px;text-align:center;color:var(--text-muted);font-size:0.88rem">Loading leaderboard...</div>
+        </div>
+        <div class="lb-login-prompt" id="lbLoginPrompt" style="display:none">
+          <p>🔐 <strong>Login to appear on the leaderboard!</strong></p>
+          <button class="lb-login-btn" onclick="openAuth('register')">Join Now →</button>
+        </div>
+      </div>
+      <!-- Badges Showcase -->
+      <div class="badge-showcase">
+        <h3>🎖️ Badges &amp; Achievements</h3>
+        <p style="font-size:0.82rem;color:var(--text-muted);margin-bottom:16px">Earn XP to unlock badges. Login to save progress!</p>
+        <div class="bs-grid" id="badgeGrid">Loading...</div>
+        <div class="bs-xp-info" id="bsXpInfo" style="margin-top:16px"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <span class="logo-text">Neuro<span class="logo-accent">Learn</span></span>
+        <p>Making AI & ML education accessible, fun, and interactive for everyone.</p>
+        <div class="footer-badges">
+          <span>🏆 Hackathon Project</span>
+          <span>👥 TeamVisioneers</span>
+          <span>🔖 T143</span>
+        </div>
+      </div>
+      <div class="footer-links">
+        <div class="fl-group">
+          <h4>Platform</h4>
+          <a href="learn.html">Learn</a>
+          <a href="playground.html">Playground</a>
+          <a href="games.html">Mini Games</a>
+          <a href="quiz.html">Quizzes</a>
+          <a href="simulate.html">Simulations</a>
+        </div>
+        <div class="fl-group">
+          <h4>Topics</h4>
+          <a href="learn.html?topic=ml">Machine Learning</a>
+          <a href="learn.html?topic=dl">Deep Learning</a>
+          <a href="learn.html?topic=nlp">NLP</a>
+          <a href="learn.html?topic=cv">Computer Vision</a>
+          <a href="learn.html?topic=rl">Reinforcement Learning</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 NeuroLearn — Built with ❤️ for AIML enthusiasts | Vibethon Hackathon</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/home.js"></script>
+</body>
+</html>

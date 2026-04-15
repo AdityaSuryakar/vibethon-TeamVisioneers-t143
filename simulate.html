@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Real-World Simulations – NeuroLearn</title>
+  <meta name="description" content="Experience AI solving real-world problems: spam detection, sentiment analysis, image classification, stock prediction, and more." />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/simulate.css" />
+</head>
+<body>
+  <div class="bg-canvas"></div>
+  <div class="noise-overlay"></div>
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <div class="logo-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="13" stroke="url(#lg1)" stroke-width="2"/><circle cx="14" cy="14" r="4" fill="url(#lg1)"/><path d="M14 1v6M14 21v6M1 14h6M21 14h6" stroke="url(#lg1)" stroke-width="2" stroke-linecap="round"/><circle cx="6" cy="6" r="2" fill="url(#lg2)"/><circle cx="22" cy="6" r="2" fill="url(#lg2)"/><circle cx="6" cy="22" r="2" fill="url(#lg2)"/><circle cx="22" cy="22" r="2" fill="url(#lg2)"/><defs><linearGradient id="lg1" x1="0" y1="0" x2="28" y2="28" gradientUnits="userSpaceOnUse"><stop stop-color="#a78bfa"/><stop offset="1" stop-color="#38bdf8"/></linearGradient><linearGradient id="lg2" x1="0" y1="0" x2="28" y2="28" gradientUnits="userSpaceOnUse"><stop stop-color="#f472b6"/><stop offset="1" stop-color="#a78bfa"/></linearGradient></defs></svg></div>
+        <span class="logo-text">Neuro<span class="logo-accent">Learn</span></span>
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html" class="nav-link" id="nav-home">Home</a>
+        <a href="learn.html" class="nav-link" id="nav-learn">Learn</a>
+        <a href="playground.html" class="nav-link" id="nav-playground">Playground</a>
+        <a href="games.html" class="nav-link" id="nav-games">Mini Games</a>
+        <a href="quiz.html" class="nav-link" id="nav-quiz">Quizzes</a>
+        <a href="simulate.html" class="nav-link active" id="nav-simulate">Simulate</a>
+      </div>
+      <div class="nav-actions">
+        <div class="xp-badge" id="xpBadge"><span class="xp-icon">⚡</span><span id="xpCount">0 XP</span></div>
+        <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-hero">
+    <div class="page-hero-content">
+      <div class="page-tag">🔬 Simulations</div>
+      <h1 class="page-title">AI in the <span class="gradient-text">Real World</span></h1>
+      <p class="page-subtitle">Watch AI solve actual problems — spam detection, sentiment analysis, image recognition, stock prediction, and more!</p>
+    </div>
+  </div>
+
+  <div class="sim-container container">
+    <!-- Simulation Cards -->
+    <div class="sim-grid" id="simGrid">
+
+      <!-- Sim 1: Spam Detector -->
+      <div class="sim-card" id="sim-spam">
+        <div class="sc-header" style="--sc-color: #f87171;">
+          <div class="sc-icon">📧</div>
+          <div class="sc-info">
+            <h3>Spam Detector</h3>
+            <span class="tag tag-green">NLP · Naive Bayes</span>
+          </div>
+        </div>
+        <p>Type or paste an email text. The AI will classify it as spam or legitimate using Naive Bayes with keyword probabilities.</p>
+        <div class="sim-body" id="spam-body">
+          <textarea class="sim-input" id="spamInput" placeholder="Type email content here... e.g., 'Win a FREE iPhone! Click here now!'" rows="3"></textarea>
+          <div class="sim-keywords">
+            <span class="sk-title">🔴 Spam indicators:</span>
+            <span class="sk-word spam-kw">free</span><span class="sk-word spam-kw">win</span><span class="sk-word spam-kw">prize</span>
+            <span class="sk-word spam-kw">click</span><span class="sk-word spam-kw">money</span><span class="sk-word spam-kw">offer</span>
+            <span class="sk-word spam-kw">lottery</span><span class="sk-word spam-kw">guaranteed</span>
+          </div>
+          <button class="sim-btn" onclick="runSpamDetector()">🔍 Analyze Email</button>
+          <div class="sim-result" id="spamResult" style="display:none"></div>
+        </div>
+      </div>
+
+      <!-- Sim 2: Sentiment Analysis -->
+      <div class="sim-card" id="sim-sentiment">
+        <div class="sc-header" style="--sc-color: #a78bfa;">
+          <div class="sc-icon">😊</div>
+          <div class="sc-info">
+            <h3>Sentiment Analysis</h3>
+            <span class="tag tag-purple">NLP · Lexicon-based</span>
+          </div>
+        </div>
+        <p>Enter any text and the AI will detect the sentiment (positive, negative, neutral) and emotional tone like a real product review analyzer.</p>
+        <div class="sim-body" id="sentiment-body">
+          <textarea class="sim-input" id="sentimentInput" placeholder="Enter a review, tweet, or comment..." rows="3"></textarea>
+          <div class="sim-example-btns">
+            <button class="seb" onclick="fillSentiment('This product is absolutely amazing! Best purchase ever 🎉')">Positive Example</button>
+            <button class="seb" onclick="fillSentiment('Terrible quality, broke after 2 days. Very disappointed.')">Negative Example</button>
+            <button class="seb" onclick="fillSentiment('The product arrived on time. It works as described.')">Neutral Example</button>
+          </div>
+          <button class="sim-btn" onclick="runSentiment()">😊 Analyze Sentiment</button>
+          <div class="sim-result" id="sentimentResult" style="display:none"></div>
+        </div>
+      </div>
+
+      <!-- Sim 3: House Price Predictor -->
+      <div class="sim-card" id="sim-houseprice">
+        <div class="sc-header" style="--sc-color: #34d399;">
+          <div class="sc-icon">🏠</div>
+          <div class="sc-info">
+            <h3>House Price Predictor</h3>
+            <span class="tag tag-green">Regression · Linear Model</span>
+          </div>
+        </div>
+        <p>Enter house features and the ML model predicts the price using a linear regression model trained on real estate data.</p>
+        <div class="sim-body">
+          <div class="sim-inputs-grid">
+            <div class="sig-item">
+              <label>Bedrooms 🛏️</label>
+              <input type="number" id="hpBeds" min="1" max="8" value="3" class="sim-num-input">
+            </div>
+            <div class="sig-item">
+              <label>Bathrooms 🚿</label>
+              <input type="number" id="hpBaths" min="1" max="5" value="2" class="sim-num-input">
+            </div>
+            <div class="sig-item">
+              <label>Area (sq ft) 📐</label>
+              <input type="number" id="hpArea" min="500" max="5000" value="1800" class="sim-num-input">
+            </div>
+            <div class="sig-item">
+              <label>Age (years) 📅</label>
+              <input type="number" id="hpAge" min="0" max="50" value="10" class="sim-num-input">
+            </div>
+          </div>
+          <div class="sim-slider-wrap">
+            <label>Location Score (1-10): <span id="locVal">7</span></label>
+            <input type="range" min="1" max="10" value="7" id="hpLoc" class="sim-range" oninput="document.getElementById('locVal').textContent=this.value">
+          </div>
+          <button class="sim-btn" onclick="runHousePredictor()">🏠 Predict Price</button>
+          <div class="sim-result" id="housePriceResult" style="display:none"></div>
+        </div>
+      </div>
+
+      <!-- Sim 4: Digit Recognizer (Canvas) -->
+      <div class="sim-card" id="sim-digit">
+        <div class="sc-header" style="--sc-color: #38bdf8;">
+          <div class="sc-icon">✏️</div>
+          <div class="sc-info">
+            <h3>Digit Recognizer</h3>
+            <span class="tag tag-blue">CNN · Computer Vision</span>
+          </div>
+        </div>
+        <p>Draw a digit (0-9) on the canvas. A simulated CNN will recognize it and show confidence scores for each digit!</p>
+        <div class="sim-body">
+          <div class="digit-canvas-wrap">
+            <canvas id="digitCanvas" width="200" height="200"></canvas>
+            <div class="digit-controls">
+              <button class="sim-btn-sm" onclick="clearDigit()">Clear</button>
+              <button class="sim-btn" onclick="recognizeDigit()">🔍 Recognize</button>
+            </div>
+          </div>
+          <div class="digit-bars" id="digitBars">
+            <p style="color:var(--text-muted);font-size:0.85rem;text-align:center;">Draw a digit and click Recognize</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sim 5: Image Classifier -->
+      <div class="sim-card" id="sim-image">
+        <div class="sc-header" style="--sc-color: #fb923c;">
+          <div class="sc-icon">🖼️</div>
+          <div class="sc-info">
+            <h3>Image Classifier</h3>
+            <span class="tag tag-orange">CNN · ResNet Demo</span>
+          </div>
+        </div>
+        <p>Select a sample image and see how a CNN (like ResNet) classifies it across 1000 ImageNet categories with confidence scores.</p>
+        <div class="sim-body">
+          <div class="img-selector">
+            <div class="img-opt active" onclick="selectImage(this, 'cat')" data-img="cat">🐱 Cat</div>
+            <div class="img-opt" onclick="selectImage(this, 'dog')" data-img="dog">🐕 Dog</div>
+            <div class="img-opt" onclick="selectImage(this, 'car')" data-img="car">🚗 Car</div>
+            <div class="img-opt" onclick="selectImage(this, 'flower')" data-img="flower">🌸 Flower</div>
+            <div class="img-opt" onclick="selectImage(this, 'bird')" data-img="bird">🦅 Bird</div>
+            <div class="img-opt" onclick="selectImage(this, 'pizza')" data-img="pizza">🍕 Pizza</div>
+          </div>
+          <div class="img-preview" id="imgPreview">🐱</div>
+          <button class="sim-btn" onclick="runImageClassifier()">🔍 Classify Image</button>
+          <div class="sim-result" id="imageResult" style="display:none"></div>
+        </div>
+      </div>
+
+      <!-- Sim 6: Stock Predictor -->
+      <div class="sim-card" id="sim-stock">
+        <div class="sc-header" style="--sc-color: #fbbf24;">
+          <div class="sc-icon">📈</div>
+          <div class="sc-info">
+            <h3>Stock Predictor</h3>
+            <span class="tag tag-yellow">LSTM · Time Series</span>
+          </div>
+        </div>
+        <p>See how LSTM networks model time-series stock data. Visualize historical data and the model's next-day predictions.</p>
+        <div class="sim-body">
+          <div class="stock-selector">
+            <button class="stk-btn active" onclick="selectStock(this,'AAPL')">AAPL</button>
+            <button class="stk-btn" onclick="selectStock(this,'GOOGL')">GOOGL</button>
+            <button class="stk-btn" onclick="selectStock(this,'MSFT')">MSFT</button>
+            <button class="stk-btn" onclick="selectStock(this,'TSLA')">TSLA</button>
+          </div>
+          <canvas id="stockCanvas" width="600" height="200" class="stock-canvas"></canvas>
+          <button class="sim-btn" onclick="runStockPredictor()">📈 Run LSTM Prediction</button>
+          <div class="sim-result" id="stockResult" style="display:none"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script src="js/simulate.js"></script>
+</body>
+</html>
