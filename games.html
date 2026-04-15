@@ -1,21 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mini Games – NeuroLearn</title>
-  <meta name="description" content="Learn AI and ML through fun interactive mini-games. Build neural networks, classify data, optimize algorithms, and more!" />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <meta name="description"
+    content="Learn AI and ML through fun interactive mini-games. Build neural networks, classify data, optimize algorithms, and more!" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap"
+    rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/games.css" />
 </head>
+
 <body>
   <div class="bg-canvas"></div>
   <div class="noise-overlay"></div>
   <nav class="navbar" id="navbar">
     <div class="nav-container">
       <a href="index.html" class="nav-logo">
-        <div class="logo-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="13" stroke="url(#lg1)" stroke-width="2"/><circle cx="14" cy="14" r="4" fill="url(#lg1)"/><path d="M14 1v6M14 21v6M1 14h6M21 14h6" stroke="url(#lg1)" stroke-width="2" stroke-linecap="round"/><circle cx="6" cy="6" r="2" fill="url(#lg2)"/><circle cx="22" cy="6" r="2" fill="url(#lg2)"/><circle cx="6" cy="22" r="2" fill="url(#lg2)"/><circle cx="22" cy="22" r="2" fill="url(#lg2)"/><defs><linearGradient id="lg1" x1="0" y1="0" x2="28" y2="28" gradientUnits="userSpaceOnUse"><stop stop-color="#a78bfa"/><stop offset="1" stop-color="#38bdf8"/></linearGradient><linearGradient id="lg2" x1="0" y1="0" x2="28" y2="28" gradientUnits="userSpaceOnUse"><stop stop-color="#f472b6"/><stop offset="1" stop-color="#a78bfa"/></linearGradient></defs></svg></div>
+        <div class="logo-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <circle cx="14" cy="14" r="13" stroke="url(#lg1)" stroke-width="2" />
+            <circle cx="14" cy="14" r="4" fill="url(#lg1)" />
+            <path d="M14 1v6M14 21v6M1 14h6M21 14h6" stroke="url(#lg1)" stroke-width="2" stroke-linecap="round" />
+            <circle cx="6" cy="6" r="2" fill="url(#lg2)" />
+            <circle cx="22" cy="6" r="2" fill="url(#lg2)" />
+            <circle cx="6" cy="22" r="2" fill="url(#lg2)" />
+            <circle cx="22" cy="22" r="2" fill="url(#lg2)" />
+            <defs>
+              <linearGradient id="lg1" x1="0" y1="0" x2="28" y2="28" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#a78bfa" />
+                <stop offset="1" stop-color="#38bdf8" />
+              </linearGradient>
+              <linearGradient id="lg2" x1="0" y1="0" x2="28" y2="28" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#f472b6" />
+                <stop offset="1" stop-color="#a78bfa" />
+              </linearGradient>
+            </defs>
+          </svg></div>
         <span class="logo-text">Neuro<span class="logo-accent">Learn</span></span>
       </a>
       <div class="nav-links" id="navLinks">
@@ -37,7 +60,8 @@
     <div class="page-hero-content">
       <div class="page-tag">🎮 Mini Games</div>
       <h1 class="page-title">Learn by <span class="gradient-text">Playing Games</span></h1>
-      <p class="page-subtitle">Experience AI and ML concepts hands-on through our gamified simulations. Each game teaches a real concept!</p>
+      <p class="page-subtitle">Experience AI and ML concepts hands-on through our gamified simulations. Each game
+        teaches a real concept!</p>
     </div>
   </div>
 
@@ -45,7 +69,7 @@
   <div class="games-hub" id="games-hub">
     <!-- Game Cards Grid -->
     <div class="games-grid container" id="gamesGrid">
-      
+
       <!-- Game 1: Neuron Builder -->
       <div class="game-card" id="neuron-builder" onclick="launchGame('neuron-builder')">
         <div class="gc-header" style="--gc-color: #a78bfa;">
@@ -68,24 +92,25 @@
         </div>
       </div>
 
-      <!-- Game 2: Data Sorter -->
-      <div class="game-card" id="data-sorter" onclick="launchGame('data-sorter')">
+      <!-- Game 2: Decision Tree Explorer -->
+      <div class="game-card" id="decision-tree" onclick="launchGame('decision-tree')">
         <div class="gc-header" style="--gc-color: #38bdf8;">
-          <div class="gc-icon">🗂️</div>
+          <div class="gc-icon">🌳</div>
           <div class="gc-badges">
             <span class="gc-diff beginner">Beginner</span>
-            <span class="gc-xp">+80 XP</span>
+            <span class="gc-xp">+110 XP</span>
           </div>
         </div>
-        <h3>Data Sorter</h3>
-        <p>Drag and drop data points into the correct categories. Race against time to classify as many as possible!</p>
+        <h3>Decision Tree Explorer</h3>
+        <p>Build a decision tree by choosing the best feature splits. Watch how the tree classifies new data points step
+          by step!</p>
         <div class="gc-tags">
-          <span>Classification</span>
-          <span>Labels</span>
-          <span>Accuracy</span>
+          <span>Decision Tree</span>
+          <span>Splits</span>
+          <span>Entropy</span>
         </div>
         <div class="gc-footer">
-          <span class="gc-plays">👥 3.1k plays</span>
+          <span class="gc-plays">👥 2.8k plays</span>
           <button class="gc-btn">Play Now →</button>
         </div>
       </div>
@@ -101,7 +126,8 @@
           </div>
         </div>
         <h3>Gradient Descent</h3>
-        <p>Guide a ball down a 2D loss landscape to find the global minimum. Adjust learning rates and watch the magic!</p>
+        <p>Guide a ball down a 2D loss landscape to find the global minimum. Adjust learning rates and watch the magic!
+        </p>
         <div class="gc-tags">
           <span>Optimization</span>
           <span>Loss Function</span>
@@ -113,24 +139,25 @@
         </div>
       </div>
 
-      <!-- Game 4: Bias Buster -->
-      <div class="game-card" id="bias-buster" onclick="launchGame('bias-buster')">
+      <!-- Game 4: Classification Challenge -->
+      <div class="game-card" id="classification-challenge" onclick="launchGame('classification-challenge')">
         <div class="gc-header" style="--gc-color: #fbbf24;">
-          <div class="gc-icon">⚖️</div>
+          <div class="gc-icon">🏷️</div>
           <div class="gc-badges">
             <span class="gc-diff intermediate">Intermediate</span>
-            <span class="gc-xp">+120 XP</span>
+            <span class="gc-xp">+140 XP</span>
           </div>
         </div>
-        <h3>Bias Buster</h3>
-        <p>Spot biased datasets and fix them to create fair AI models. Learn why diverse data matters!</p>
+        <h3>Classification Challenge</h3>
+        <p>Classic ML classification puzzles — place decision boundaries, adjust thresholds, and maximize your F1-score!
+        </p>
         <div class="gc-tags">
-          <span>AI Ethics</span>
-          <span>Fairness</span>
-          <span>Data Bias</span>
+          <span>Classification</span>
+          <span>Boundary</span>
+          <span>F1-Score</span>
         </div>
         <div class="gc-footer">
-          <span class="gc-plays">👥 1.8k plays</span>
+          <span class="gc-plays">👥 2.0k plays</span>
           <button class="gc-btn">Play Now →</button>
         </div>
       </div>
@@ -198,4 +225,5 @@
   <script src="js/main.js"></script>
   <script src="js/games.js"></script>
 </body>
+
 </html>

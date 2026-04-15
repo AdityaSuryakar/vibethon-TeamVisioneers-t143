@@ -1,21 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Quiz – NeuroLearn</title>
-  <meta name="description" content="Test your AI and ML knowledge with adaptive quizzes covering foundations, machine learning, deep learning, and more." />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <meta name="description"
+    content="Test your AI and ML knowledge with adaptive quizzes covering foundations, machine learning, deep learning, and more." />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap"
+    rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/quiz.css" />
 </head>
+
 <body>
   <div class="bg-canvas"></div>
   <div class="noise-overlay"></div>
   <nav class="navbar" id="navbar">
     <div class="nav-container">
       <a href="index.html" class="nav-logo">
-        <div class="logo-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="13" stroke="url(#lg1)" stroke-width="2"/><circle cx="14" cy="14" r="4" fill="url(#lg1)"/><path d="M14 1v6M14 21v6M1 14h6M21 14h6" stroke="url(#lg1)" stroke-width="2" stroke-linecap="round"/><circle cx="6" cy="6" r="2" fill="url(#lg2)"/><circle cx="22" cy="6" r="2" fill="url(#lg2)"/><circle cx="6" cy="22" r="2" fill="url(#lg2)"/><circle cx="22" cy="22" r="2" fill="url(#lg2)"/><defs><linearGradient id="lg1" x1="0" y1="0" x2="28" y2="28" gradientUnits="userSpaceOnUse"><stop stop-color="#a78bfa"/><stop offset="1" stop-color="#38bdf8"/></linearGradient><linearGradient id="lg2" x1="0" y1="0" x2="28" y2="28" gradientUnits="userSpaceOnUse"><stop stop-color="#f472b6"/><stop offset="1" stop-color="#a78bfa"/></linearGradient></defs></svg></div>
+        <div class="logo-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <circle cx="14" cy="14" r="13" stroke="url(#lg1)" stroke-width="2" />
+            <circle cx="14" cy="14" r="4" fill="url(#lg1)" />
+            <path d="M14 1v6M14 21v6M1 14h6M21 14h6" stroke="url(#lg1)" stroke-width="2" stroke-linecap="round" />
+            <circle cx="6" cy="6" r="2" fill="url(#lg2)" />
+            <circle cx="22" cy="6" r="2" fill="url(#lg2)" />
+            <circle cx="6" cy="22" r="2" fill="url(#lg2)" />
+            <circle cx="22" cy="22" r="2" fill="url(#lg2)" />
+            <defs>
+              <linearGradient id="lg1" x1="0" y1="0" x2="28" y2="28" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#a78bfa" />
+                <stop offset="1" stop-color="#38bdf8" />
+              </linearGradient>
+              <linearGradient id="lg2" x1="0" y1="0" x2="28" y2="28" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#f472b6" />
+                <stop offset="1" stop-color="#a78bfa" />
+              </linearGradient>
+            </defs>
+          </svg></div>
         <span class="logo-text">Neuro<span class="logo-accent">Learn</span></span>
       </a>
       <div class="nav-links" id="navLinks">
@@ -37,7 +60,8 @@
     <div class="page-hero-content">
       <div class="page-tag">🎯 Quizzes</div>
       <h1 class="page-title">Test Your <span class="gradient-text">AIML Knowledge</span></h1>
-      <p class="page-subtitle">Adaptive quizzes across all topics. Each correct answer earns XP and brings you closer to mastery!</p>
+      <p class="page-subtitle">Adaptive quizzes across all topics. Each correct answer earns XP and brings you closer to
+        mastery!</p>
     </div>
   </div>
 
@@ -85,6 +109,32 @@
           </div>
         </div>
 
+        <div class="quiz-topic-card" onclick="startQuiz('nlp')" id="qt-nlp">
+          <div class="qtc-icon">💬</div>
+          <div class="qtc-info">
+            <h3>Natural Language Processing</h3>
+            <p>Tokenization, embeddings, BERT, GPT, sentiment analysis &amp; translation</p>
+          </div>
+          <div class="qtc-meta">
+            <span class="tag tag-green">Intermediate</span>
+            <span class="qtc-count">10 Questions</span>
+            <span class="qtc-xp">⚡ 400 XP</span>
+          </div>
+        </div>
+
+        <div class="quiz-topic-card" onclick="startQuiz('cv')" id="qt-cv">
+          <div class="qtc-icon">👁️</div>
+          <div class="qtc-info">
+            <h3>Computer Vision</h3>
+            <p>CNNs, object detection, segmentation, GANs &amp; real-world applications</p>
+          </div>
+          <div class="qtc-meta">
+            <span class="tag tag-pink">Advanced</span>
+            <span class="qtc-count">10 Questions</span>
+            <span class="qtc-xp">⚡ 400 XP</span>
+          </div>
+        </div>
+
         <div class="quiz-topic-card" onclick="startQuiz('mixed')" id="qt-mixed">
           <div class="qtc-icon">🎲</div>
           <div class="qtc-info">
@@ -102,7 +152,9 @@
       <!-- High Scores -->
       <div class="highscores-panel" id="highscores">
         <h3>🏆 Your Best Scores</h3>
-        <div id="scoreList"><p style="color:var(--text-muted);font-size:0.9rem;">Complete a quiz to see your scores here!</p></div>
+        <div id="scoreList">
+          <p style="color:var(--text-muted);font-size:0.9rem;">Complete a quiz to see your scores here!</p>
+        </div>
       </div>
     </div>
 
@@ -114,7 +166,9 @@
           <span id="qaScore">Score: 0</span>
         </div>
         <div class="qa-timer-wrap">
-          <div class="qa-timer-bar"><div class="qa-timer-fill" id="qaTimerFill"></div></div>
+          <div class="qa-timer-bar">
+            <div class="qa-timer-fill" id="qaTimerFill"></div>
+          </div>
           <span id="qaTimerText">⏱ 20s</span>
         </div>
         <div class="qa-progress-bar">
@@ -151,15 +205,20 @@
           </div>
         </div>
         <div class="qr-stats">
-          <div class="qrs-item"><span class="qrs-val" id="qrAccuracy">0%</span><span class="qrs-label">Accuracy</span></div>
-          <div class="qrs-item"><span class="qrs-val" id="qrXP" style="color:var(--yellow)">+0 XP</span><span class="qrs-label">Earned</span></div>
-          <div class="qrs-item"><span class="qrs-val" id="qrTime">0s</span><span class="qrs-label">Time Taken</span></div>
-          <div class="qrs-item"><span class="qrs-val" id="qrStreak">0</span><span class="qrs-label">Best Streak</span></div>
+          <div class="qrs-item"><span class="qrs-val" id="qrAccuracy">0%</span><span class="qrs-label">Accuracy</span>
+          </div>
+          <div class="qrs-item"><span class="qrs-val" id="qrXP" style="color:var(--yellow)">+0 XP</span><span
+              class="qrs-label">Earned</span></div>
+          <div class="qrs-item"><span class="qrs-val" id="qrTime">0s</span><span class="qrs-label">Time Taken</span>
+          </div>
+          <div class="qrs-item"><span class="qrs-val" id="qrStreak">0</span><span class="qrs-label">Best Streak</span>
+          </div>
         </div>
       </div>
       <div class="qr-breakdown" id="qrBreakdown"><!-- Per-question breakdown --></div>
       <div class="qr-actions">
-        <button class="btn-hero-primary" onclick="document.getElementById('quizResults').style.display='none'; document.getElementById('quizSelector').style.display='block'">
+        <button class="btn-hero-primary"
+          onclick="document.getElementById('quizResults').style.display='none'; document.getElementById('quizSelector').style.display='block'">
           <span>← Back to Quizzes</span>
         </button>
         <button class="btn-hero-secondary" id="qrRetryBtn">↺ Try Again</button>
@@ -170,4 +229,5 @@
   <script src="js/main.js"></script>
   <script src="js/quiz.js"></script>
 </body>
+
 </html>

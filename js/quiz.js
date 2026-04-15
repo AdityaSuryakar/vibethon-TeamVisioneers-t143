@@ -37,13 +37,39 @@ const QUIZ_BANK = {
     { q: "What is transfer learning?", opts: ["Moving a model to a different computer", "Using a pre-trained model's knowledge as a starting point for a new task", "Translating a model to a different programming language", "Training a model on multiple datasets simultaneously"], ans: 1, exp: "Transfer learning reuses knowledge from a model pre-trained on a large dataset (e.g., ImageNet) as the starting point for a different but related task." },
     { q: "What is 'batch normalization' used for?", opts: ["Splitting data into batches", "Normalizing layer inputs to speed up training and stabilize learning", "Increasing the batch size", "Selecting a subset of features"], ans: 1, exp: "Batch normalization normalizes the inputs to each layer, reducing internal covariate shift, enabling higher learning rates and faster, more stable training." },
   ],
+  nlp: [
+    { q: "What does NLP stand for?", opts: ["Neural Learning Process", "Natural Language Processing", "Numeric Logic Programming", "Network Layer Protocol"], ans: 1, exp: "NLP stands for Natural Language Processing — the branch of AI that enables machines to understand, interpret, and generate human language." },
+    { q: "What is 'tokenization' in NLP?", opts: ["Assigning security tokens", "Splitting text into smaller units like words or subwords", "Encrypting text data", "Converting text to images"], ans: 1, exp: "Tokenization splits raw text into tokens (words, subwords, or characters) that can be converted into numerical representations a model can process." },
+    { q: "What does Word2Vec learn?", opts: ["Grammatical rules", "Dense vector representations where similar words are geometrically close", "Image features from text", "Sentence length distributions"], ans: 1, exp: "Word2Vec maps words to dense vectors where semantically similar words cluster together, enabling arithmetic like 'king − man + woman ≈ queen'." },
+    { q: "What is 'sentiment analysis' used for?", opts: ["Analyzing network traffic", "Classifying the emotional tone of text", "Recognizing faces in images", "Translating code between languages"], ans: 1, exp: "Sentiment analysis classifies the sentiment (positive, negative, neutral) or emotion expressed in a piece of text — used in product reviews, social media monitoring, and more." },
+    { q: "What is a Seq2Seq model primarily used for?", opts: ["Image classification", "Machine translation — converting one sequence to another", "Clustering data points", "Detecting fraudulent transactions"], ans: 1, exp: "Seq2Seq (Sequence-to-Sequence) models encode an input sequence (e.g., English sentence) and decode it into an output sequence (e.g., French translation) of potentially different length." },
+    { q: "What is the key difference between BERT and GPT?", opts: ["BERT is larger", "BERT is bidirectional (encoder); GPT is autoregressive (decoder)", "GPT uses CNNs; BERT uses RNNs", "BERT cannot be fine-tuned"], ans: 1, exp: "BERT uses bidirectional context (encoder-only) making it great for understanding tasks. GPT uses left-to-right autoregressive generation (decoder-only) making it ideal for text generation." },
+    { q: "What is Byte Pair Encoding (BPE) used for in NLP?", opts: ["Compressing model weights", "Subword tokenization for handling rare and unknown words", "Encrypting training data", "Measuring sentence similarity"], ans: 1, exp: "BPE builds a vocabulary of common subword units, allowing models to handle rare and unseen words by breaking them into known subwords — used in GPT, RoBERTa, and most modern LLMs." },
+    { q: "What is Named Entity Recognition (NER)?", opts: ["Renaming columns in a dataset", "Identifying and classifying named entities (people, places, organizations) in text", "Naming model layers", "Recognizing faces in photos"], ans: 1, exp: "NER identifies and classifies named entities in text (e.g., 'Barack Obama' as PERSON, 'Paris' as LOCATION), a fundamental task in information extraction." },
+    { q: "What problem does the attention mechanism in Seq2Seq models solve?", opts: ["Slow training speed", "The information bottleneck of compressing all input into one fixed context vector", "Overfitting on small datasets", "Running out of GPU memory"], ans: 1, exp: "Standard Seq2Seq compresses the full input into a single context vector, losing information for long sequences. Attention lets the decoder dynamically focus on relevant input positions at each step." },
+    { q: "What is RLHF used for in training LLMs?", opts: ["Reducing model size", "Aligning model outputs with human values and preferences", "Speeding up tokenization", "Data augmentation"], ans: 1, exp: "Reinforcement Learning from Human Feedback (RLHF) trains a reward model based on human preferences and uses RL to fine-tune the LLM to produce more helpful, harmless, and honest responses." },
+  ],
+  cv: [
+    { q: "What does CNN stand for in deep learning?", opts: ["Central Neural Node", "Convolutional Neural Network", "Clustered Neuron Network", "Computed Normalization Network"], ans: 1, exp: "CNN stands for Convolutional Neural Network — specialized architectures that use convolutional layers to detect spatial patterns (edges, textures, shapes) in images." },
+    { q: "What is the primary purpose of a pooling layer in a CNN?", opts: ["Adding non-linearity", "Classifying the output", "Reducing spatial dimensions while retaining key features", "Initializing weights"], ans: 2, exp: "Pooling layers (max or average) reduce the spatial size of feature maps, decreasing computation and providing translation invariance while preserving the most important activations." },
+    { q: "What is 'transfer learning' in computer vision?", opts: ["Moving a model to another computer", "Reusing a model pre-trained on a large dataset as a starting point for a new task", "Translating image labels to another language", "Testing the model on a new GPU"], ans: 1, exp: "Transfer learning reuses weights from a model pre-trained on ImageNet (1.2M images, 1000 classes). These learned visual features generalize well, allowing good performance with far less task-specific data." },
+    { q: "What does YOLO stand for and why is it significant?", opts: ["You Observe Left Only — for edge detection", "You Only Look Once — detects all objects in one forward pass enabling real-time detection", "Year Of Large Objects — a dataset", "Yet Online Learning Object — an online algorithm"], ans: 1, exp: "YOLO (You Only Look Once) performs object detection in a single forward pass through the network, making it real-time capable (30+ FPS) compared to two-stage methods like R-CNN." },
+    { q: "What is the difference between semantic and instance segmentation?", opts: ["No difference", "Instance segmentation distinguishes individual objects; semantic only assigns class per pixel", "Semantic is more precise", "Instance segmentation doesn't use neural networks"], ans: 1, exp: "Semantic segmentation assigns a class to every pixel but cannot tell apart individual objects of the same class. Instance segmentation gives each individual object its own unique segmentation mask." },
+    { q: "What metric measures bounding box quality in object detection?", opts: ["F1-Score", "Accuracy", "IoU (Intersection over Union)", "Mean Squared Error"], ans: 2, exp: "IoU (Intersection over Union) measures the overlap between predicted and ground-truth bounding boxes. IoU > 0.5 is typically considered a correct detection. mAP averages this across all classes." },
+    { q: "What is the role of the discriminator in a GAN?", opts: ["Generate new images", "Distinguish real images from generated (fake) ones", "Compress images to latent vectors", "Segment objects in images"], ans: 1, exp: "The Discriminator is a binary classifier trained to tell real images from generated ones. Its feedback (gradients) teaches the Generator to create increasingly realistic images over adversarial training." },
+    { q: "Which architecture introduced residual (skip) connections to train very deep networks?", opts: ["AlexNet", "VGGNet", "ResNet", "Inception"], ans: 2, exp: "ResNet (He et al., 2015) introduced residual connections that skip one or more layers. This allows gradients to flow directly through the network, enabling training of networks with 100+ layers." },
+    { q: "What is data augmentation in computer vision?", opts: ["Adding more GPU memory", "Artificially expanding the training dataset by applying transformations like flips, rotations, and color jitter", "Increasing image resolution", "Reducing the model size"], ans: 1, exp: "Data augmentation applies random transformations (flip, rotate, crop, brightness changes) to training images, artificially increasing dataset size and variety — improving model robustness and reducing overfitting." },
+    { q: "What dataset is most commonly used to benchmark image classification models?", opts: ["MNIST", "CIFAR-10", "ImageNet", "COCO"], ans: 2, exp: "ImageNet (ILSVRC) with 1.2 million images across 1000 classes is the standard benchmark for image classification. The competition sparked the deep learning revolution when AlexNet won in 2012." },
+  ],
 };
 
-// Mixed bank (random from all)
+// Mixed bank (random from all topics)
 QUIZ_BANK.mixed = [
-  ...QUIZ_BANK.foundations.slice(0, 5),
-  ...QUIZ_BANK.ml.slice(0, 5),
-  ...QUIZ_BANK.dl.slice(0, 5),
+  ...QUIZ_BANK.foundations.slice(0, 3),
+  ...QUIZ_BANK.ml.slice(0, 3),
+  ...QUIZ_BANK.dl.slice(0, 3),
+  ...QUIZ_BANK.nlp.slice(0, 3),
+  ...QUIZ_BANK.cv.slice(0, 3),
 ].sort(() => Math.random() - 0.5);
 
 // Quiz State
@@ -77,7 +103,7 @@ function loadHighScores() {
   const entries = Object.entries(scores);
   if (entries.length === 0) return;
 
-  const topicNames = { foundations: '🌱 AI Foundations', ml: '⚙️ Machine Learning', dl: '🧠 Deep Learning', mixed: '🎲 Mixed' };
+  const topicNames = { foundations: '🌱 AI Foundations', ml: '⚙️ Machine Learning', dl: '🧠 Deep Learning', nlp: '💬 NLP', cv: '👁️ Computer Vision', mixed: '🎲 Mixed' };
   scoreList.innerHTML = entries.map(([topic, data]) => `
     <div class="score-row">
       <span class="sr-topic">${topicNames[topic] || topic}</span>
@@ -116,7 +142,7 @@ function renderQuestion() {
   document.getElementById('qaProgressFill').style.width = `${(current / total) * 100}%`;
 
   // Category
-  const catMap = { foundations: '🌱 Foundations', ml: '⚙️ Machine Learning', dl: '🧠 Deep Learning', mixed: '🎲 Mixed' };
+  const catMap = { foundations: '🌱 Foundations', ml: '⚙️ Machine Learning', dl: '🧠 Deep Learning', nlp: '💬 NLP', cv: '👁️ Computer Vision', mixed: '🎲 Mixed' };
   document.getElementById('qaCategory').textContent = catMap[quizState.topic] || '';
 
   // Question
@@ -219,7 +245,7 @@ function showResults() {
   const total = quizState.questions.length;
   const acc = Math.round((score / total) * 100);
   const timeTaken = Math.round((Date.now() - quizState.startTime) / 1000);
-  const xpMap = { foundations: 200, ml: 300, dl: 400, mixed: 500 };
+  const xpMap = { foundations: 200, ml: 300, dl: 400, nlp: 400, cv: 400, mixed: 500 };
   const baseXP = xpMap[quizState.topic] || 200;
   const xpEarned = Math.round((score / total) * baseXP);
 

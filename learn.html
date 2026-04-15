@@ -1,21 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Learn AI & ML – NeuroLearn</title>
-  <meta name="description" content="Structured AIML learning with interactive lessons on AI foundations, machine learning, deep learning, NLP, and computer vision." />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <meta name="description"
+    content="Structured AIML learning with interactive lessons on AI foundations, machine learning, deep learning, NLP, and computer vision." />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap"
+    rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/learn.css" />
 </head>
+
 <body>
   <div class="bg-canvas"></div>
   <div class="noise-overlay"></div>
   <nav class="navbar" id="navbar">
     <div class="nav-container">
       <a href="index.html" class="nav-logo">
-        <div class="logo-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="13" stroke="url(#lg1)" stroke-width="2"/><circle cx="14" cy="14" r="4" fill="url(#lg1)"/><path d="M14 1v6M14 21v6M1 14h6M21 14h6" stroke="url(#lg1)" stroke-width="2" stroke-linecap="round"/><circle cx="6" cy="6" r="2" fill="url(#lg2)"/><circle cx="22" cy="6" r="2" fill="url(#lg2)"/><circle cx="6" cy="22" r="2" fill="url(#lg2)"/><circle cx="22" cy="22" r="2" fill="url(#lg2)"/><defs><linearGradient id="lg1" x1="0" y1="0" x2="28" y2="28" gradientUnits="userSpaceOnUse"><stop stop-color="#a78bfa"/><stop offset="1" stop-color="#38bdf8"/></linearGradient><linearGradient id="lg2" x1="0" y1="0" x2="28" y2="28" gradientUnits="userSpaceOnUse"><stop stop-color="#f472b6"/><stop offset="1" stop-color="#a78bfa"/></linearGradient></defs></svg></div>
+        <div class="logo-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <circle cx="14" cy="14" r="13" stroke="url(#lg1)" stroke-width="2" />
+            <circle cx="14" cy="14" r="4" fill="url(#lg1)" />
+            <path d="M14 1v6M14 21v6M1 14h6M21 14h6" stroke="url(#lg1)" stroke-width="2" stroke-linecap="round" />
+            <circle cx="6" cy="6" r="2" fill="url(#lg2)" />
+            <circle cx="22" cy="6" r="2" fill="url(#lg2)" />
+            <circle cx="6" cy="22" r="2" fill="url(#lg2)" />
+            <circle cx="22" cy="22" r="2" fill="url(#lg2)" />
+            <defs>
+              <linearGradient id="lg1" x1="0" y1="0" x2="28" y2="28" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#a78bfa" />
+                <stop offset="1" stop-color="#38bdf8" />
+              </linearGradient>
+              <linearGradient id="lg2" x1="0" y1="0" x2="28" y2="28" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#f472b6" />
+                <stop offset="1" stop-color="#a78bfa" />
+              </linearGradient>
+            </defs>
+          </svg></div>
         <span class="logo-text">Neuro<span class="logo-accent">Learn</span></span>
       </a>
       <div class="nav-links" id="navLinks">
@@ -38,12 +61,16 @@
     <div class="page-hero-content">
       <div class="page-tag">📚 Learning Hub</div>
       <h1 class="page-title">AIML <span class="gradient-text">Learning Modules</span></h1>
-      <p class="page-subtitle">From AI basics to advanced deep learning — structured, interactive lessons to guide your learning journey.</p>
+      <p class="page-subtitle">From AI basics to advanced deep learning — structured, interactive lessons to guide your
+        learning journey.</p>
     </div>
     <!-- Search & Filter Bar -->
     <div class="learn-controls">
       <div class="search-box">
-        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="7.5" cy="7.5" r="6" stroke="#94a3b8" stroke-width="1.5"/><path d="M12 12l4 4" stroke="#94a3b8" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+          <circle cx="7.5" cy="7.5" r="6" stroke="#94a3b8" stroke-width="1.5" />
+          <path d="M12 12l4 4" stroke="#94a3b8" stroke-width="1.5" stroke-linecap="round" />
+        </svg>
         <input type="text" id="searchInput" placeholder="Search lessons, topics..." />
       </div>
       <div class="filter-tabs" id="filterTabs">
@@ -107,7 +134,9 @@
 
       <div class="sidebar-section">
         <div class="ss-header">
-          <span class="ss-tag" style="color:#38bdf8; border-color:rgba(56,189,248,0.3); background:rgba(56,189,248,0.1);">⚙️ Machine Learning</span>
+          <span class="ss-tag"
+            style="color:#38bdf8; border-color:rgba(56,189,248,0.3); background:rgba(56,189,248,0.1);">⚙️ Machine
+            Learning</span>
           <span class="ss-count">6 lessons</span>
         </div>
         <div class="lesson-list" data-category="ml">
@@ -158,7 +187,9 @@
 
       <div class="sidebar-section">
         <div class="ss-header">
-          <span class="ss-tag" style="color:#f472b6; border-color:rgba(244,114,182,0.3); background:rgba(244,114,182,0.1);">🧠 Deep Learning</span>
+          <span class="ss-tag"
+            style="color:#f472b6; border-color:rgba(244,114,182,0.3); background:rgba(244,114,182,0.1);">🧠 Deep
+            Learning</span>
           <span class="ss-count">5 lessons</span>
         </div>
         <div class="lesson-list" data-category="dl">
@@ -199,6 +230,99 @@
           </div>
         </div>
       </div>
+
+      <!-- NLP Section -->
+      <div class="sidebar-section">
+        <div class="ss-header">
+          <span class="ss-tag"
+            style="color:#34d399; border-color:rgba(52,211,153,0.3); background:rgba(52,211,153,0.1);">💬 NLP</span>
+          <span class="ss-count">5 lessons</span>
+        </div>
+        <div class="lesson-list" data-category="nlp">
+          <div class="lesson-item" data-lesson="nlp-intro" onclick="loadLesson('nlp-intro')">
+            <div class="li-status">1</div>
+            <div class="li-info">
+              <span class="li-title">Introduction to NLP</span>
+              <span class="li-meta">⏱ 12 min · Intermediate</span>
+            </div>
+          </div>
+          <div class="lesson-item" data-lesson="tokenization" onclick="loadLesson('tokenization')">
+            <div class="li-status">2</div>
+            <div class="li-info">
+              <span class="li-title">Tokenization &amp; Embeddings</span>
+              <span class="li-meta">⏱ 14 min · Intermediate</span>
+            </div>
+          </div>
+          <div class="lesson-item" data-lesson="sentiment-analysis" onclick="loadLesson('sentiment-analysis')">
+            <div class="li-status">3</div>
+            <div class="li-info">
+              <span class="li-title">Sentiment Analysis</span>
+              <span class="li-meta">⏱ 12 min · Intermediate</span>
+            </div>
+          </div>
+          <div class="lesson-item" data-lesson="seq2seq" onclick="loadLesson('seq2seq')">
+            <div class="li-status">4</div>
+            <div class="li-info">
+              <span class="li-title">Seq2Seq &amp; Machine Translation</span>
+              <span class="li-meta">⏱ 18 min · Advanced</span>
+            </div>
+          </div>
+          <div class="lesson-item" data-lesson="bert-gpt" onclick="loadLesson('bert-gpt')">
+            <div class="li-status">5</div>
+            <div class="li-info">
+              <span class="li-title">BERT, GPT &amp; Large Language Models</span>
+              <span class="li-meta">⏱ 25 min · Advanced</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Computer Vision Section -->
+      <div class="sidebar-section">
+        <div class="ss-header">
+          <span class="ss-tag"
+            style="color:#fbbf24; border-color:rgba(251,191,36,0.3); background:rgba(251,191,36,0.1);">👁️ Computer
+            Vision</span>
+          <span class="ss-count">5 lessons</span>
+        </div>
+        <div class="lesson-list" data-category="cv">
+          <div class="lesson-item" data-lesson="cv-intro" onclick="loadLesson('cv-intro')">
+            <div class="li-status">1</div>
+            <div class="li-info">
+              <span class="li-title">Introduction to Computer Vision</span>
+              <span class="li-meta">⏱ 12 min · Intermediate</span>
+            </div>
+          </div>
+          <div class="lesson-item" data-lesson="image-classification" onclick="loadLesson('image-classification')">
+            <div class="li-status">2</div>
+            <div class="li-info">
+              <span class="li-title">Image Classification</span>
+              <span class="li-meta">⏱ 15 min · Intermediate</span>
+            </div>
+          </div>
+          <div class="lesson-item" data-lesson="object-detection" onclick="loadLesson('object-detection')">
+            <div class="li-status">3</div>
+            <div class="li-info">
+              <span class="li-title">Object Detection (YOLO, R-CNN)</span>
+              <span class="li-meta">⏱ 20 min · Advanced</span>
+            </div>
+          </div>
+          <div class="lesson-item" data-lesson="image-segmentation" onclick="loadLesson('image-segmentation')">
+            <div class="li-status">4</div>
+            <div class="li-info">
+              <span class="li-title">Image Segmentation</span>
+              <span class="li-meta">⏱ 18 min · Advanced</span>
+            </div>
+          </div>
+          <div class="lesson-item" data-lesson="cv-applications" onclick="loadLesson('cv-applications')">
+            <div class="li-status">5</div>
+            <div class="li-info">
+              <span class="li-title">CV Applications &amp; GANs</span>
+              <span class="li-meta">⏱ 20 min · Advanced</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </aside>
 
     <!-- Right: Lesson Content -->
@@ -220,14 +344,16 @@
             <div class="cc-icon">🧠</div>
             <div class="cc-content">
               <h3>Core Concept</h3>
-              <p>Artificial Intelligence is the simulation of human intelligence in machines, enabling them to perform tasks that typically require human cognition.</p>
+              <p>Artificial Intelligence is the simulation of human intelligence in machines, enabling them to perform
+                tasks that typically require human cognition.</p>
             </div>
           </div>
         </div>
 
         <div class="lesson-section">
           <h2>What is AI?</h2>
-          <p>Artificial Intelligence (AI) is a broad field of computer science focused on creating systems that can perform tasks that normally require <strong>human intelligence</strong>. These tasks include:</p>
+          <p>Artificial Intelligence (AI) is a broad field of computer science focused on creating systems that can
+            perform tasks that normally require <strong>human intelligence</strong>. These tasks include:</p>
           <ul class="lesson-list">
             <li>🗣️ Understanding natural language (NLP)</li>
             <li>👁️ Recognizing images and objects (Computer Vision)</li>
@@ -265,7 +391,8 @@
             <div class="type-card">
               <div class="tc-icon" style="color:#34d399">🤖</div>
               <h4>Narrow AI (ANI)</h4>
-              <p>Designed for specific tasks. All current AI systems fall here — chess engines, image recognizers, chatbots.</p>
+              <p>Designed for specific tasks. All current AI systems fall here — chess engines, image recognizers,
+                chatbots.</p>
               <span class="tag tag-green">Current Reality</span>
             </div>
             <div class="type-card">
@@ -286,12 +413,36 @@
         <div class="lesson-section">
           <h2>Real-world Applications</h2>
           <div class="apps-showcase">
-            <div class="app-item"><span>🏥</span><div><strong>Healthcare</strong><p>Disease diagnosis, drug discovery, medical imaging analysis</p></div></div>
-            <div class="app-item"><span>🚗</span><div><strong>Autonomous Vehicles</strong><p>Self-driving cars, obstacle detection, route planning</p></div></div>
-            <div class="app-item"><span>💬</span><div><strong>Virtual Assistants</strong><p>Siri, Alexa, Google Assistant — natural language processing</p></div></div>
-            <div class="app-item"><span>🎬</span><div><strong>Entertainment</strong><p>Netflix recommendations, movie CGI, game AI opponents</p></div></div>
-            <div class="app-item"><span>🏦</span><div><strong>Finance</strong><p>Fraud detection, algorithmic trading, credit scoring</p></div></div>
-            <div class="app-item"><span>🌍</span><div><strong>Climate</strong><p>Weather prediction, climate modeling, energy optimization</p></div></div>
+            <div class="app-item"><span>🏥</span>
+              <div><strong>Healthcare</strong>
+                <p>Disease diagnosis, drug discovery, medical imaging analysis</p>
+              </div>
+            </div>
+            <div class="app-item"><span>🚗</span>
+              <div><strong>Autonomous Vehicles</strong>
+                <p>Self-driving cars, obstacle detection, route planning</p>
+              </div>
+            </div>
+            <div class="app-item"><span>💬</span>
+              <div><strong>Virtual Assistants</strong>
+                <p>Siri, Alexa, Google Assistant — natural language processing</p>
+              </div>
+            </div>
+            <div class="app-item"><span>🎬</span>
+              <div><strong>Entertainment</strong>
+                <p>Netflix recommendations, movie CGI, game AI opponents</p>
+              </div>
+            </div>
+            <div class="app-item"><span>🏦</span>
+              <div><strong>Finance</strong>
+                <p>Fraud detection, algorithmic trading, credit scoring</p>
+              </div>
+            </div>
+            <div class="app-item"><span>🌍</span>
+              <div><strong>Climate</strong>
+                <p>Weather prediction, climate modeling, energy optimization</p>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -323,4 +474,5 @@
   <script src="js/main.js"></script>
   <script src="js/learn.js"></script>
 </body>
+
 </html>
